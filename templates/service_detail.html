@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ── Service Hero ────────────────────────────────────────────────────── -->
+<section class="svc-detail-hero" style="--svc-color: {{ svc.color }}">
+    <div class="container">
+        <a href="{{ url_for('services') }}" class="svc-back-link">← Back to All Services</a>
+        <div class="svc-detail-hero-content">
+            <span class="svc-detail-icon">{{ svc.icon }}</span>
+            <h1>{{ svc.name }}</h1>
+            <p class="svc-detail-tagline">{{ svc.tagline }}</p>
+            <div class="svc-detail-hero-ctas">
+                <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-primary" style="background: {{ svc.color }};">💬 Get Started on WhatsApp</a>
+                <a href="#process" class="btn btn-secondary">See How It Works ↓</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Main Content with Sidebar ──────────────────────────────────────── -->
+<section class="svc-detail-main">
+    <div class="container">
+        <div class="svc-detail-layout">
+
+            <!-- Sidebar Navigation -->
+            <aside class="svc-sidebar">
+                <nav class="svc-sidebar-nav">
+                    <h4>On This Page</h4>
+                    <ul>
+                        <li><a href="#overview">📖 Overview</a></li>
+                        <li><a href="#benefits">✅ Benefits</a></li>
+                        <li><a href="#process">⚙️ How It Works</a></li>
+                        <li><a href="#documents">📄 Documents</a></li>
+                        <li><a href="#penalty">⚠️ Penalties</a></li>
+                        <li><a href="#faqs">❓ FAQs</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Other Services -->
+                <div class="svc-sidebar-others">
+                    <h4>Other Services</h4>
+                    <ul>
+                        {% for other in other_services %}
+                        <li>
+                            <a href="{{ url_for('service_detail', service_id=other.id) }}">
+                                <span>{{ other.icon }}</span> {{ other.name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="svc-detail-content">
+
+                <!-- Overview -->
+                <div class="svc-section" id="overview">
+                    <h2>📖 What is {{ svc.name }}?</h2>
+                    <p class="svc-detail-text">{{ svc.what }}</p>
+                </div>
+
+                <!-- Benefits -->
+                <div class="svc-section" id="benefits">
+                    <h2>✅ Benefits of {{ svc.name }}</h2>
+                    <div class="svc-benefits-grid">
+                        {% for benefit in svc.benefits %}
+                        <div class="svc-benefit-item">
+                            <span class="benefit-check" style="color: {{ svc.color }};">✓</span>
+                            <p>{{ benefit }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Process Steps -->
+                <div class="svc-section" id="process">
+                    <h2>⚙️ How FileSure Handles Your {{ svc.name }}</h2>
+                    <div class="svc-process-timeline">
+                        {% for step in svc.process_steps %}
+                        <div class="svc-process-step" style="--svc-color: {{ svc.color }}">
+                            <div class="step-number" style="background: {{ svc.color }};">{{ loop.index }}</div>
+                            <div class="step-content">
+                                <h3>{{ step.title }}</h3>
+                                <p>{{ step.desc }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Documents Required -->
+                <div class="svc-section" id="documents">
+                    <h2>📄 Documents Required</h2>
+                    <div class="svc-docs-grid">
+                        {% for req in svc.requirements %}
+                        <div class="svc-doc-item">
+                            <span class="doc-bullet" style="background: {{ svc.color }};"></span>
+                            <p>{{ req }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Penalty Warning -->
+                <div class="svc-section" id="penalty">
+                    <h2>⚠️ Penalty for Non-Compliance</h2>
+                    <div class="svc-penalty-box" style="--svc-color: {{ svc.color }}">
+                        <div class="penalty-box-icon">⚠️</div>
+                        <div class="penalty-box-content">
+                            <p>{{ svc.penalty }}</p>
+                        </div>
+                    </div>
+                    <p class="svc-penalty-note">Don't risk it — let FileSure handle your compliance on time, every time.</p>
+                </div>
+
+                <!-- FAQs -->
+                <div class="svc-section" id="faqs">
+                    <h2>❓ Frequently Asked Questions</h2>
+                    <div class="svc-faq-list">
+                        {% for faq in svc.faqs %}
+                        <div class="svc-faq-item">
+                            <button class="svc-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                                <span>{{ faq.q }}</span>
+                                <span class="faq-arrow">▼</span>
+                            </button>
+                            <div class="svc-faq-a">
+                                <p>{{ faq.a }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="svc-section svc-final-cta">
+                    <div class="svc-cta-card" style="--svc-color: {{ svc.color }}">
+                        <h2>Ready to Get Started with {{ svc.name }}?</h2>
+                        <p>Send us a message on WhatsApp and our team will guide you through the entire process — no jargon, no hassle.</p>
+                        <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-primary btn-lg" style="background: {{ svc.color }};">
+                            💬 Chat with FileSure Now
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

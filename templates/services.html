@@ -42,24 +42,25 @@
     </div>
 </section>
 
-<!-- ── One-Time Services ──────────────────────────────────────────────── -->
-<section class="pain-points">
+<!-- ── Explore All Services ─────────────────────────────────────────────── -->
+<section class="service-deepdive-section" id="explore-services">
     <div class="container">
         <div class="section-header reveal">
-            <span class="section-label">One-Time Services</span>
-            <h2 class="section-title">Need Something <span class="text-gradient">Specific?</span></h2>
-            <p class="section-subtitle">Individual services with transparent pricing. No subscription needed.</p>
+            <span class="section-label">Explore All Services</span>
+            <h2 class="section-title">Everything Your Business <span class="text-gradient">Needs</span></h2>
+            <p class="section-subtitle">Click on any service to view pricing, required documents, process steps, and benefits.</p>
         </div>
 
         <div class="services-grid stagger-children">
-            {% for service in one_time_services %}
-            <div class="glass-card service-item reveal">
-                <span class="service-icon">{{ service.icon }}</span>
-                <h3>{{ service.name }}</h3>
-                <div class="service-price">
-                    <span class="currency-small">₹</span>{{ service.price }}
+            {% for svc in service_details %}
+            <a href="{{ url_for('service_detail', service_id=svc.id) }}" class="glass-card service-item reveal" style="text-decoration: none; display: flex; flex-direction: column; text-align: center; height: 100%; border: 1px solid var(--border-color); transition: all 0.3s ease;">
+                <span class="service-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">{{ svc.icon }}</span>
+                <h3 style="color: var(--text-primary); margin-bottom: 0.5rem; font-family: var(--font-heading);">{{ svc.name }}</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5;">{{ svc.tagline }}</p>
+                <div style="margin-top: auto;">
+                    <span class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; width: 100%;">View Full Details →</span>
                 </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </div>
@@ -135,4 +136,7 @@
     </div>
 </section>
 
+{% endblock %}
+
+{% block scripts %}
 {% endblock %}

@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', v=3) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', v=6) }}">
 </head>
 <body>
 
@@ -76,11 +76,11 @@
                 <div>
                     <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="{{ url_for('services') }}">GST Filing</a></li>
-                        <li><a href="{{ url_for('services') }}">TDS Returns</a></li>
-                        <li><a href="{{ url_for('services') }}">ROC Filing</a></li>
-                        <li><a href="{{ url_for('services') }}">Company Incorporation</a></li>
-                        <li><a href="{{ url_for('services') }}">Tax Advisory</a></li>
+                        <li><a href="{{ url_for('service_detail', service_id='gst') }}">GST Filing</a></li>
+                        <li><a href="{{ url_for('service_detail', service_id='tds') }}">TDS Returns</a></li>
+                        <li><a href="{{ url_for('service_detail', service_id='roc') }}">ROC Filing</a></li>
+                        <li><a href="{{ url_for('service_detail', service_id='incorporation') }}">Company Incorporation</a></li>
+                        <li><a href="{{ url_for('service_detail', service_id='itr') }}">Income Tax Return</a></li>
                     </ul>
                 </div>
                 <div>
@@ -102,6 +102,22 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="footer-trust-badges">
+                <div class="footer-badge">
+                    <i>🔒</i> 256-bit SSL Secure
+                </div>
+                <div class="footer-badge">
+                    <i>✓</i> Certified Partner CAs
+                </div>
+                <div class="footer-badge">
+                    <i>🛡️</i> 100% Data Privacy
+                </div>
+                <div class="footer-badge">
+                    <i>🇮🇳</i> Made in India
+                </div>
+            </div>
+
             <div class="footer-bottom">
                 <p>&copy; {{ current_year }} FileSure. All rights reserved.</p>
                 <p>Made with 💙 in Mumbai</p>
@@ -111,5 +127,6 @@
 
     <!-- ── Scripts ─────────────────────────────────────────────────────── -->
     <script src="{{ url_for('static', filename='js/animations.js', v=2) }}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
