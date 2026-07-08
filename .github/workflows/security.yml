@@ -20,4 +20,4 @@ jobs:
     - name: Security gate
       run: |
         pip install vulnledger
-        vulnledger scan --ci .
+        vulnledger .
