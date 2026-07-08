@@ -23,7 +23,14 @@ from chatbot import get_ai_response
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "filesure-dev-key-change-in-production")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///filesure.db")
+
+# Vercel filesystem is read-only except for /tmp.
+if os.environ.get("VERCEL"):
+    db_path = "sqlite:////tmp/filesure.db"
+else:
+    db_path = "sqlite:///filesure.db"
+    
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", db_path)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -838,7 +845,10 @@ def whatsapp_webhook():
 # ── Database Initialization ──────────────────────────────────────────────────
 
 with app.app_context():
-    db.create_all()
+    try:
+        db.create_all()
+    except Exception as e:
+        print(f"Warning: Could not create database tables (expected on read-only serverless platforms): {e}")
 
 
 # ── Run ──────────────────────────────────────────────────────────────────────
