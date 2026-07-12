@@ -1,12 +1,12 @@
-# FileSure — Compliance & Tax Services
+# FilingDeck — Compliance & Tax Services
 
-FileSure is a complete Flask-based web application designed to offer MSMEs, startups, and freelancers affordable tax and compliance filing services. It includes a smart compliance engine that calculates and visually plots upcoming deadlines on an interactive calendar.
+FilingDeck is a complete Flask-based web application designed to offer MSMEs, startups, and freelancers affordable tax and compliance filing services. It includes a smart compliance engine that calculates and visually plots upcoming deadlines on an interactive calendar.
 
 ## 🚀 Features
 
-- **Compliance Engine (`compliance.py`)**: Computes filing deadlines (GST, TDS, ROC, Income Tax) over a rolling 6-month window based on business type and registration rules.
+- **Compliance Engine (`compliance.py`)**: Computes filing deadlines (GST, TDS, Income Tax) over a rolling 6-month window based on business type and registration rules.
 - **Interactive Visual Calendar**: A dynamically rendered JavaScript grid showing safe, upcoming, urgent, and critical deadlines.
-- **Dedicated Service Pages**: SEO-optimized, dynamic detail pages for all major services (GST, ROC, ITR, etc.) with process timelines and penalty warnings.
+- **Dedicated Service Pages**: SEO-optimized, dynamic detail pages for all major services (GST, ITR, etc.) with process timelines and penalty warnings.
 - **AI Chatbot (`chatbot.py`)**: Integrated Google Gemini AI to instantly answer client compliance questions directly on the website.
 - **Twilio WhatsApp Bot**: Automated server-side webhook that replies to WhatsApp messages with a professional greeting and links.
 - **Security & CI/CD**: Automated GitHub Actions workflow using `vulnledger` to block vulnerable packages from production.
@@ -24,8 +24,8 @@ FileSure is a complete Flask-based web application designed to offer MSMEs, star
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/KavyaKajavadra/FileSure.git
-   cd FileSure
+   git clone https://github.com/KavyaKajavadra/FilingDeck.git
+   cd FilingDeck
    ```
 
 2. **Set up Environment Variables**
@@ -52,7 +52,7 @@ FileSure is a complete Flask-based web application designed to offer MSMEs, star
 
 ## 🚀 Deployment (Vercel)
 
-FileSure is optimized for free Serverless hosting on Vercel:
+FilingDeck is optimized for free Serverless hosting on Vercel:
 1. Import the repository into your Vercel dashboard.
 2. Add the environment variables from your `.env` file into the Vercel Settings.
 3. Click **Deploy**. Vercel will automatically read `vercel.json`, install dependencies, and launch the site.
@@ -60,9 +60,9 @@ FileSure is optimized for free Serverless hosting on Vercel:
 ## 📂 Project Structure
 
 ```text
-FileSure/
+FilingDeck/
 ├── app.py                 # Flask server, Twilio webhooks, routes, and DB models
-├── compliance.py          # Deadline calculation engine for GST, ROC, TDS, etc.
+├── compliance.py          # Deadline calculation engine for GST, TDS, etc.
 ├── chatbot.py             # Google Gemini AI integrations
 ├── requirements.txt       # Clean dependency list
 ├── vercel.json            # Vercel Serverless Function config
@@ -86,9 +86,15 @@ FileSure/
 ## Contributing
 Contributions are welcome. Please open an issue or submit a pull request for any enhancements or bug fixes.
 
-## Maintainers / Credits
-**Kavya Kajavadra** — Tech Lead & Project Head  
-Built with 💙 for MSMEs and Freelancers.
+## 👥 Meet the Team
+- **Kavya Kajavadra** — Tech Lead & Web Developer
+- **Parth Mehta** — Tax & Compliance (CA Finalist)
+- **Yug Jain** — Tax Advisory (CA Aspirant)
+- **Deep Patel** — Accounting Operations (BAF)
+- **Nilkanth Saliya** — Financial Planning (BFM)
+- **Bhavyy Jain** — Legal & Compliance Advisory (CS Executive)
+
+Built with 💙 for MSMEs and Freelancers in India.
 
 ## License
 This project is licensed under the MIT License.

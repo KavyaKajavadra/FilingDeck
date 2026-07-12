@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   FileSure — Visual Compliance Calendar
+   FilingDeck — Visual Compliance Calendar
    Renders monthly calendar grids with clickable deadline dates
    ═══════════════════════════════════════════════════════════════════════════ */
 

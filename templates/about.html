@@ -6,7 +6,7 @@
 <section class="page-header">
     <div class="container">
         <span class="section-label">About Us</span>
-        <h1>Meet the <span class="text-gradient">FileSure Team</span></h1>
+        <h1>Meet the <span class="text-gradient">FilingDeck Team</span></h1>
         <p>Young professionals, serious expertise. We're making compliance affordable and stress-free for every small business.</p>
     </div>
 </section>
@@ -15,15 +15,15 @@
 <section>
     <div class="container">
         <div class="about-story reveal">
-            <h2 style="text-align: center; margin-bottom: 2rem;">Why We Started <span class="text-gradient">FileSure</span></h2>
+            <h2 class="story-title">Why We Started <span class="text-gradient">FilingDeck</span></h2>
             <p>
                 We saw a problem that millions of small businesses in India face: compliance is confusing, expensive, and time-consuming. Traditional CA firms charge premium rates, respond slowly, and offer little transparency.
             </p>
             <p>
-                We asked ourselves — <strong>what if compliance could be as simple as a WhatsApp message?</strong> What if a small business owner could get GST filed for ₹999/month instead of ₹5,000? What if they never missed a deadline again because someone was actually tracking it for them?
+                We asked ourselves — <strong>what if compliance could be as simple as a WhatsApp message?</strong> What if a small business owner could get GST filed for ₹999/month instead of hefty traditional fees? What if they never missed a deadline again because someone was actually tracking it for them?
             </p>
             <p>
-                That's why we built FileSure. Our team uniquely combines <strong>CA expertise</strong> (taxation, GST, TDS), <strong>CS knowledge</strong> (company law, ROC filings), <strong>financial market insight</strong>, and <strong>technology</strong> — all under one roof. This combination doesn't exist at traditional firms.
+                That's why we built FilingDeck. Our team uniquely combines <strong>CA expertise</strong> (taxation, GST, TDS), <strong>financial market insight</strong>, and <strong>technology</strong> — all under one roof. This combination doesn't exist at traditional firms.
             </p>
             <p>
                 We're young, we're tech-savvy, and we're hungry to prove that compliance doesn't have to be painful. <strong>Based in Mumbai and Thane</strong>, we serve businesses across Maharashtra and beyond.
@@ -71,13 +71,13 @@
         <div class="section-header reveal">
             <span class="section-label">The Team</span>
             <h2 class="section-title">Expertise Across <span class="text-gradient">Every Domain</span></h2>
-            <p class="section-subtitle">CA + CS + Finance + Tech = a team built to handle everything your business needs.</p>
+            <p class="section-subtitle">CA + Finance + Tech = a team built to handle everything your business needs.</p>
         </div>
 
         <div class="team-grid stagger-children">
             {% for member in team %}
             <div class="glass-card team-card reveal">
-                <div class="team-avatar" style="background: {{ member.color }};">
+                <div class="team-avatar">
                     {{ member.initials }}
                 </div>
                 <h3>{{ member.name }}</h3>
@@ -95,8 +95,8 @@
     <div class="container">
         <div class="cta-box reveal">
             <h2>Want to Work With Us? <span class="text-gradient">Let's Connect.</span></h2>
-            <p>Whether you need GST filing, company incorporation, or just a compliance checkup — we're here to help.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <p>Whether you need GST filing, tax returns, or just a compliance checkup — we're here to help.</p>
+            <div class="cta-buttons">
                 <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Contact Us</a>
                 <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-whatsapp btn-lg">💬 WhatsApp Us</a>
             </div>
