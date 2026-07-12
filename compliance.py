@@ -1,5 +1,5 @@
 """
-FileSure — Compliance Calendar Engine
+FilingDeck — Compliance Calendar Engine
 Calculates upcoming filing deadlines for Indian businesses based on type,
 registration date, and state. Covers GST, TDS, ROC, PT, ITR, and more.
 """
@@ -131,59 +131,7 @@ FILINGS = [
         "notes": "Interest u/s 234B & 234C for non-payment or short payment.",
     },
 
-    # ── ROC Filings (MCA) ────────────────────────────────────────────────────
-    {
-        "id": "aoc4",
-        "name": "AOC-4 (Financial Statements)",
-        "description": "Filing of annual financial statements with ROC",
-        "category": "ROC / MCA",
-        "frequency": "annual",
-        "due_month": 10,
-        "due_day": 30,
-        "applicable_to": ["pvt_ltd", "opc"],
-        "penalty_per_day": None,
-        "max_penalty": None,
-        "notes": "Due within 30 days of AGM. Additional fee ₹100/day for late filing.",
-    },
-    {
-        "id": "mgt7",
-        "name": "MGT-7 (Annual Return)",
-        "description": "Annual return filed with ROC",
-        "category": "ROC / MCA",
-        "frequency": "annual",
-        "due_month": 11,
-        "due_day": 29,
-        "applicable_to": ["pvt_ltd", "opc"],
-        "penalty_per_day": 100,
-        "max_penalty": None,
-        "notes": "Due within 60 days of AGM. Late fee ₹100/day.",
-    },
-    {
-        "id": "form8",
-        "name": "Form 8 (Statement of Account & Solvency)",
-        "description": "LLP annual filing with ROC",
-        "category": "ROC / MCA",
-        "frequency": "annual",
-        "due_month": 10,
-        "due_day": 30,
-        "applicable_to": ["llp"],
-        "penalty_per_day": 100,
-        "max_penalty": None,
-        "notes": "Due within 30 days from end of 6 months of financial year (30th October).",
-    },
-    {
-        "id": "form11",
-        "name": "Form 11 (LLP Annual Return)",
-        "description": "LLP annual return filed with ROC",
-        "category": "ROC / MCA",
-        "frequency": "annual",
-        "due_month": 5,
-        "due_day": 30,
-        "applicable_to": ["llp"],
-        "penalty_per_day": 100,
-        "max_penalty": None,
-        "notes": "Due by 30th May every year. Late fee ₹100/day.",
-    },
+
 
     # ── Professional Tax (Maharashtra) ───────────────────────────────────────
     {
@@ -199,20 +147,7 @@ FILINGS = [
         "notes": "Monthly return for employers in Maharashtra. Due by end of month following the salary month.",
     },
 
-    # ── Other Compliances ────────────────────────────────────────────────────
-    {
-        "id": "dir3kyc",
-        "name": "DIR-3 KYC (Director KYC)",
-        "description": "Annual KYC update for all company directors",
-        "category": "ROC / MCA",
-        "frequency": "annual",
-        "due_month": 9,
-        "due_day": 30,
-        "applicable_to": ["pvt_ltd", "opc"],
-        "penalty_per_day": None,
-        "max_penalty": 5000,
-        "notes": "Due by 30th September every year. ₹5,000 penalty for late filing.",
-    },
+
 ]
 
 
