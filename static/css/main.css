@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   FileSure — Design System
+   FilingDeck — Design System
    Premium dark theme with glassmorphism, gradients, and micro-animations
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -2531,3 +2531,15 @@ textarea.form-control {
     font-size: 1.2rem;
     opacity: 0.8;
 }
+
+/* About Page Utils */
+.story-title { text-align: center; margin-bottom: 2rem; }
+.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.team-card:nth-child(1) .team-avatar { background: var(--accent-blue); }
+.team-card:nth-child(2) .team-avatar { background: var(--accent-emerald); }
+.team-card:nth-child(3) .team-avatar { background: var(--accent-amber); }
+.team-card:nth-child(4) .team-avatar { background: var(--accent-purple); }
+.team-card:nth-child(5) .team-avatar { background: var(--accent-red); }
+
+.team-card:nth-child(6) .team-avatar { background: var(--accent-blue-light); }

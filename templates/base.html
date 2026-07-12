@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FileSure — {{ page_title }}</title>
+    <title>FilingDeck — {{ page_title }}</title>
     <meta name="description" content="{{ page_description }}">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="FileSure — {{ page_title }}">
+    <meta property="og:title" content="FilingDeck — {{ page_title }}">
     <meta property="og:description" content="{{ page_description }}">
     <meta property="og:type" content="website">
 
@@ -26,7 +26,7 @@
         <div class="container">
             <a href="{{ url_for('index') }}" class="logo">
                 <span class="logo-icon">F</span>
-                FileSure
+                FilingDeck
             </a>
 
             <ul class="nav-links" id="navLinks">
@@ -68,7 +68,7 @@
                 <div class="footer-brand">
                     <div class="logo">
                         <span class="logo-icon">F</span>
-                        FileSure
+                        FilingDeck
                     </div>
                     <p>Affordable compliance and tax filing services for MSMEs and freelancers in Mumbai & Thane. File with confidence.</p>
                     <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-whatsapp btn-sm">💬 Chat on WhatsApp</a>
@@ -78,8 +78,8 @@
                     <ul class="footer-links">
                         <li><a href="{{ url_for('service_detail', service_id='gst') }}">GST Filing</a></li>
                         <li><a href="{{ url_for('service_detail', service_id='tds') }}">TDS Returns</a></li>
-                        <li><a href="{{ url_for('service_detail', service_id='roc') }}">ROC Filing</a></li>
-                        <li><a href="{{ url_for('service_detail', service_id='incorporation') }}">Company Incorporation</a></li>
+
+
                         <li><a href="{{ url_for('service_detail', service_id='itr') }}">Income Tax Return</a></li>
                     </ul>
                 </div>
@@ -96,7 +96,7 @@
                     <h4>Contact</h4>
                     <ul class="footer-links">
                         <li><a href="{{ whatsapp_link }}" target="_blank">WhatsApp</a></li>
-                        <li><a href="mailto:hello@filesure.in">hello@filesure.in</a></li>
+                        <li><a href="mailto:hello@filingdeck.in">hello@filingdeck.in</a></li>
                         <li>Mumbai & Thane</li>
                         <li>Maharashtra, India</li>
                     </ul>
@@ -119,7 +119,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; {{ current_year }} FileSure. All rights reserved.</p>
+                <p>&copy; {{ current_year }} FilingDeck. All rights reserved.</p>
                 <p>Made with 💙 in Mumbai</p>
             </div>
         </div>

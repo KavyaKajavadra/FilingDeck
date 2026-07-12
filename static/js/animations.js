@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   FileSure — Frontend Animations
+   FilingDeck — Frontend Animations
    Scroll reveals, counters, FAQ accordion, mobile menu, navbar scroll
    ═══════════════════════════════════════════════════════════════════════════ */
 

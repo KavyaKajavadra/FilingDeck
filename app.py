@@ -1,5 +1,5 @@
 """
-FileSure — Main Flask Application
+FilingDeck — Main Flask Application
 MSME Compliance & Freelancer Financial Checkup Platform
 """
 
@@ -22,13 +22,13 @@ from chatbot import get_ai_response
 # ── App Configuration ────────────────────────────────────────────────────────
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "filesure-dev-key-change-in-production")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "filingdeck-dev-key-change-in-production")
 
 # Vercel filesystem is read-only except for /tmp.
 if os.environ.get("VERCEL"):
-    db_path = "sqlite:////tmp/filesure.db"
+    db_path = "sqlite:////tmp/filingdeck.db"
 else:
-    db_path = "sqlite:///filesure.db"
+    db_path = "sqlite:///filingdeck.db"
     
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", db_path)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -38,7 +38,7 @@ db = SQLAlchemy(app)
 # ── WhatsApp Config ──────────────────────────────────────────────────────────
 # Replace with your actual WhatsApp Business number
 WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "919999999999")
-WHATSAPP_MESSAGE = "Hi FileSure! I'm interested in your compliance services."
+WHATSAPP_MESSAGE = "Hi FilingDeck! I'm interested in your compliance services."
 
 
 # ── Database Models ──────────────────────────────────────────────────────────
@@ -109,33 +109,16 @@ PLANS = [
         "highlight": True,
         "cta": "Most Popular",
     },
-    {
-        "name": "Complete",
-        "price": "4,999",
-        "period": "/month",
-        "description": "Full compliance management — you focus on your business",
-        "features": [
-            "Everything in Growth",
-            "ROC Annual Filings (AOC-4, MGT-7)",
-            "Director KYC (DIR-3 KYC)",
-            "Dedicated Relationship Manager",
-            "Monthly Compliance Report",
-            "Phone Support",
-        ],
-        "highlight": False,
-        "cta": "Go Complete",
-    },
 ]
 
 ONE_TIME_SERVICES = [
-    {"name": "Company / LLP Incorporation", "price": "4,999 – 9,999", "icon": "🏢"},
     {"name": "PAN Application (Individual / Business)", "price": "499", "icon": "🪪"},
     {"name": "TAN Application", "price": "499", "icon": "📋"},
     {"name": "GST Registration", "price": "1,499", "icon": "📦"},
     {"name": "PTEC (Professional Tax — Individuals)", "price": "799", "icon": "💼"},
     {"name": "PTRC (Professional Tax — Employers)", "price": "999", "icon": "🏭"},
     {"name": "Freelancer Financial Checkup", "price": "999", "icon": "🩺"},
-    {"name": "Net Worth Certificate", "price": "1,499 – 2,999", "icon": "📜"},
+
     {"name": "Udyam Registration (MSME)", "price": "499", "icon": "🏗️"},
 ]
 
@@ -145,7 +128,7 @@ SERVICE_DETAILS = [
         "icon": "📦",
         "name": "GST Filing",
         "tagline": "Stay compliant with monthly & quarterly GST returns",
-        "meta_title": "GST Filing Services | GSTR-1 & GSTR-3B Returns | FileSure",
+        "meta_title": "GST Filing Services | GSTR-1 & GSTR-3B Returns | FilingDeck",
         "meta_description": "Affordable monthly GST filing services for MSMEs. GSTR-1 & GSTR-3B returns filed accurately and on time. Avoid penalties. Starting at ₹999/month.",
         "what": "Goods and Services Tax (GST) is a unified indirect tax levied on the supply of goods and services across India. Every registered business must file periodic returns (GSTR-1 for outward supplies and GSTR-3B for summary) declaring their sales, purchases, and tax liability.",
         "benefits": [
@@ -182,7 +165,7 @@ SERVICE_DETAILS = [
         "icon": "💰",
         "name": "TDS Returns",
         "tagline": "Quarterly deduction reporting — filed correctly, on time",
-        "meta_title": "TDS Return Filing Services | Form 24Q, 26Q, 27Q | FileSure",
+        "meta_title": "TDS Return Filing Services | Form 24Q, 26Q, 27Q | FilingDeck",
         "meta_description": "Expert TDS return filing for businesses. Quarterly Form 24Q, 26Q, 27Q filed accurately. Avoid ₹200/day penalties. Get Form 16/16A generated.",
         "what": "Tax Deducted at Source (TDS) requires businesses to deduct tax at prescribed rates when making payments like salaries, rent, professional fees, or contractor charges, and deposit it with the government. Quarterly TDS returns (Form 24Q, 26Q, 27Q) must be filed reporting all deductions.",
         "benefits": [
@@ -209,7 +192,7 @@ SERVICE_DETAILS = [
             {"q": "When are TDS returns due?", "a": "TDS returns are filed quarterly. Q1 (Apr–Jun) by 31 Jul, Q2 (Jul–Sep) by 31 Oct, Q3 (Oct–Dec) by 31 Jan, Q4 (Jan–Mar) by 31 May."},
             {"q": "What is the penalty for late TDS filing?", "a": "A late fee of ₹200 per day is levied under Section 234E, capped at the total TDS amount. Additional penalty up to ₹1,00,000 under Section 271H."},
             {"q": "Do I need TAN to deduct TDS?", "a": "Yes. TAN (Tax Deduction Account Number) is mandatory for anyone who deducts or collects tax at source."},
-            {"q": "What is Form 16 and who issues it?", "a": "Form 16 is a TDS certificate issued by employers to employees, summarizing salary paid and tax deducted during the financial year. FileSure generates this for you."},
+            {"q": "What is Form 16 and who issues it?", "a": "Form 16 is a TDS certificate issued by employers to employees, summarizing salary paid and tax deducted during the financial year. FilingDeck generates this for you."},
         ],
         "penalty": "₹200/day late fee until the return is filed (capped at the TDS amount). Additional penalty up to ₹1,00,000 under Section 271H for incorrect filing.",
         "color": "#10b981",
@@ -219,7 +202,7 @@ SERVICE_DETAILS = [
         "icon": "📊",
         "name": "Income Tax Return (ITR)",
         "tagline": "Annual income declaration — filed accurately for individuals & businesses",
-        "meta_title": "Income Tax Return Filing | ITR-1 to ITR-7 | FileSure",
+        "meta_title": "Income Tax Return Filing | ITR-1 to ITR-7 | FilingDeck",
         "meta_description": "Professional ITR filing services for individuals, freelancers, and businesses. Maximize deductions, claim refunds. Avoid penalties up to ₹10,000.",
         "what": "Every individual, HUF, partnership firm, and company earning above the basic exemption limit must file an annual Income Tax Return declaring their total income, deductions, and tax payable. The correct ITR form (ITR-1 through ITR-7) depends on the nature and source of income.",
         "benefits": [
@@ -253,49 +236,11 @@ SERVICE_DETAILS = [
         "color": "#f59e0b",
     },
     {
-        "id": "roc",
-        "icon": "🏛️",
-        "name": "ROC Filings",
-        "tagline": "Annual company compliance with the Registrar of Companies",
-        "meta_title": "ROC Filing Services | AOC-4, MGT-7, DIR-3 KYC | FileSure",
-        "meta_description": "Annual ROC filing for Private Limited Companies and LLPs. AOC-4, MGT-7, DIR-3 KYC filed on time. Avoid ₹100/day penalties and director disqualification.",
-        "what": "Every Private Limited Company and LLP registered in India must file annual returns and financial statements with the Registrar of Companies (ROC) under the Ministry of Corporate Affairs. Key forms include AOC-4 (financial statements), MGT-7 (annual return), and DIR-3 KYC (director identity verification).",
-        "benefits": [
-            "Maintain 'Active' company status on MCA portal",
-            "Avoid heavy penalties of ₹100/day for late filings",
-            "Prevent disqualification of directors (DIN deactivation)",
-            "Required for raising funds, adding partners, or selling the company",
-            "Build credibility and trust with investors and banks",
-        ],
-        "requirements": [
-            "Company CIN / LLP Identification Number",
-            "Audited Financial Statements (Balance Sheet, P&L, Cash Flow)",
-            "Board Resolution and AGM minutes",
-            "Director DSC (Digital Signature Certificate)",
-            "DIN details of all directors",
-            "Statutory auditor's report",
-        ],
-        "process_steps": [
-            {"title": "Collect Financials", "desc": "Share your company's audited financial statements, board resolutions, and director details with us."},
-            {"title": "Prepare Annual Return", "desc": "We prepare Form AOC-4 (financial statements) and MGT-7/MGT-7A (annual return) with all required schedules."},
-            {"title": "Director KYC", "desc": "We file DIR-3 KYC for all directors to keep their DIN active and prevent deactivation."},
-            {"title": "File on MCA Portal", "desc": "All forms are digitally signed and filed on the MCA portal. You receive filing receipts and SRN numbers."},
-        ],
-        "faqs": [
-            {"q": "What is the deadline for ROC annual filing?", "a": "AOC-4 is due within 30 days of AGM. MGT-7 is due within 60 days of AGM. DIR-3 KYC is due by 30th September every year."},
-            {"q": "What happens if I miss ROC filing?", "a": "A penalty of ₹100/day per form is levied with no upper cap. Directors can be disqualified under Section 164(2), and the company may be marked as 'Struck Off' by RoC."},
-            {"q": "Is DIR-3 KYC mandatory every year?", "a": "Yes. Every director who has been allotted a DIN must file DIR-3 KYC annually by 30th September, failing which the DIN gets deactivated."},
-            {"q": "Do LLPs also need to file with ROC?", "a": "Yes. LLPs must file Form 8 (Statement of Account) and Form 11 (Annual Return) with the MCA every year."},
-        ],
-        "penalty": "₹100/day per form for late filing (no upper cap — can run into lakhs). Directors may face disqualification under Section 164(2). Company may be marked as 'Struck Off'.",
-        "color": "#ef4444",
-    },
-    {
         "id": "pt",
         "icon": "💼",
         "name": "Professional Tax",
         "tagline": "State-level employment tax — mandatory in Maharashtra",
-        "meta_title": "Professional Tax Filing | PTEC & PTRC Registration | FileSure",
+        "meta_title": "Professional Tax Filing | PTEC & PTRC Registration | FilingDeck",
         "meta_description": "Professional Tax registration and return filing in Maharashtra. PTEC for individuals, PTRC for employers. Stay compliant with state tax laws.",
         "what": "Professional Tax is a state government tax levied on all salaried employees, professionals, and business owners in Maharashtra. Employers must register for PTRC (to deduct from employee salaries) and individuals must register for PTEC (for self-employment). Monthly or annual returns must be filed depending on the liability.",
         "benefits": [
@@ -328,51 +273,11 @@ SERVICE_DETAILS = [
         "color": "#8b5cf6",
     },
     {
-        "id": "incorporation",
-        "icon": "🏢",
-        "name": "Company / LLP Incorporation",
-        "tagline": "Register your business entity — Private Limited, LLP, or OPC",
-        "meta_title": "Company Registration | Private Limited, LLP, OPC | FileSure",
-        "meta_description": "Register your Private Limited Company, LLP, or OPC with FileSure. End-to-end incorporation from name approval to certificate. Starting at ₹4,999.",
-        "what": "Company Incorporation is the legal process of registering a business as a separate legal entity (Private Limited Company, One Person Company, or LLP) with the Ministry of Corporate Affairs. This gives the business a distinct identity, limited liability protection, and the ability to raise funds, sign contracts, and scale operations formally.",
-        "benefits": [
-            "Limited liability — personal assets are protected",
-            "Separate legal identity for contracts and bank accounts",
-            "Easier to raise funding from investors and banks",
-            "Greater credibility with clients and vendors",
-            "Tax benefits and deductions available to companies",
-            "Perpetual existence — company survives beyond founders",
-        ],
-        "requirements": [
-            "Minimum 2 directors (Pvt Ltd) / 2 partners (LLP) / 1 (OPC)",
-            "PAN & Aadhaar of all directors/partners",
-            "Passport-size photos and digital signatures (DSC)",
-            "Proof of registered office (rent agreement + NOC + utility bill)",
-            "Proposed company name (minimum 2 options)",
-            "Capital structure details (authorised share capital)",
-        ],
-        "process_steps": [
-            {"title": "Name Approval", "desc": "We apply for name reservation via SPICe+ Part A (RUN). You provide 2 name options; MCA approves one."},
-            {"title": "DSC & DIN", "desc": "We obtain Digital Signature Certificates for directors and apply for Director Identification Numbers (DIN)."},
-            {"title": "SPICe+ Filing", "desc": "We prepare and file the SPICe+ form with MoA (Memorandum of Association) and AoA (Articles of Association)."},
-            {"title": "Incorporation Certificate", "desc": "MCA issues the Certificate of Incorporation with your CIN, PAN, and TAN. Your company is officially born!"},
-            {"title": "Post-Incorporation", "desc": "We help you open a current bank account, apply for GST registration, and set up statutory registers."},
-        ],
-        "faqs": [
-            {"q": "How long does company incorporation take?", "a": "Typically 7–15 business days from the date of submitting all documents, depending on MCA processing times."},
-            {"q": "What is the minimum capital required?", "a": "There is no minimum capital requirement for a Private Limited Company. You can start with as low as ₹1 lakh authorised capital."},
-            {"q": "What is the difference between Pvt Ltd and LLP?", "a": "A Pvt Ltd has shareholders and a board of directors with stricter compliance. An LLP is more flexible with fewer compliance requirements, ideal for professional services."},
-            {"q": "Can a single person start a company?", "a": "Yes! A One Person Company (OPC) allows a single individual to incorporate a company with limited liability."},
-        ],
-        "penalty": "No penalty for not incorporating, but operating without registration means unlimited personal liability, inability to raise formal funding, and limited credibility.",
-        "color": "#06b6d4",
-    },
-    {
         "id": "udyam",
         "icon": "🏗️",
         "name": "Udyam Registration (MSME)",
         "tagline": "Official government recognition as a Micro, Small, or Medium Enterprise",
-        "meta_title": "Udyam Registration | MSME Certificate Online | FileSure",
+        "meta_title": "Udyam Registration | MSME Certificate Online | FilingDeck",
         "meta_description": "Get your Udyam (MSME) Registration certificate. Unlock priority bank loans, government subsidies, and tender preferences. Quick and hassle-free.",
         "what": "Udyam Registration is the government's official process to classify and certify a business as an MSME (Micro, Small, or Medium Enterprise) based on investment in plant/machinery and annual turnover. It replaced the old Udyog Aadhaar system and is completely free on the government portal, but the process requires accurate classification.",
         "benefits": [
@@ -400,7 +305,7 @@ SERVICE_DETAILS = [
         ],
         "faqs": [
             {"q": "What is the difference between Micro, Small, and Medium?", "a": "Micro: Investment up to ₹1 Cr & Turnover up to ₹5 Cr. Small: Investment up to ₹10 Cr & Turnover up to ₹50 Cr. Medium: Investment up to ₹50 Cr & Turnover up to ₹250 Cr."},
-            {"q": "Is Udyam Registration free?", "a": "Yes, registration on the government portal is completely free. FileSure charges a small service fee for handling the process and ensuring accurate classification."},
+            {"q": "Is Udyam Registration free?", "a": "Yes, registration on the government portal is completely free. FilingDeck charges a small service fee for handling the process and ensuring accurate classification."},
             {"q": "Can service businesses register as MSME?", "a": "Yes! Both manufacturing and service enterprises are eligible for Udyam Registration under the same criteria."},
             {"q": "Does Udyam Registration expire?", "a": "No. Udyam Registration is permanent and does not need to be renewed. However, you should update details if your turnover or investment changes significantly."},
         ],
@@ -412,7 +317,7 @@ SERVICE_DETAILS = [
         "icon": "🪪",
         "name": "PAN Application",
         "tagline": "Apply for a new Permanent Account Number for Individuals or Businesses",
-        "meta_title": "PAN Card Application | Individual & Business | FileSure",
+        "meta_title": "PAN Card Application | Individual & Business | FilingDeck",
         "meta_description": "Apply for a new PAN card online. Fast processing for individuals, companies, and partnership firms. Starting at ₹499.",
         "what": "A Permanent Account Number (PAN) is a ten-character alphanumeric identifier issued by the Income Tax Department. It is mandatory for all taxpayers, businesses, and entities conducting high-value financial transactions in India.",
         "benefits": [
@@ -446,7 +351,7 @@ SERVICE_DETAILS = [
         "icon": "📋",
         "name": "TAN Application",
         "tagline": "Tax Deduction and Collection Account Number for Businesses",
-        "meta_title": "TAN Registration Services | FileSure",
+        "meta_title": "TAN Registration Services | FilingDeck",
         "meta_description": "Get your TAN (Tax Deduction Account Number) registered. Mandatory for businesses deducting TDS. Fast processing at ₹499.",
         "what": "TAN is a 10-digit alphanumeric number issued by the Income Tax Department. It is mandatory for all persons (including businesses) who are responsible for deducting or collecting tax at source (TDS/TCS) on behalf of the government.",
         "benefits": [
@@ -479,7 +384,7 @@ SERVICE_DETAILS = [
         "icon": "🏢",
         "name": "GST Registration",
         "tagline": "Get your business officially registered under GST",
-        "meta_title": "GST Registration Online | Fast & Hassle-Free | FileSure",
+        "meta_title": "GST Registration Online | Fast & Hassle-Free | FilingDeck",
         "meta_description": "Register your business for GST online. Get your GSTIN quickly with expert assistance. Mandatory for businesses crossing turnover limits.",
         "what": "GST Registration is the process by which a taxpayer gets themselves registered under GST. Once a business is successfully registered, a unique 15-digit Goods and Services Tax Identification Number (GSTIN) is assigned to them.",
         "benefits": [
@@ -514,7 +419,7 @@ SERVICE_DETAILS = [
         "icon": "🩺",
         "name": "Freelancer Financial Checkup",
         "tagline": "A complete review of your tax structure and compliance health",
-        "meta_title": "Freelancer Financial & Tax Checkup | FileSure",
+        "meta_title": "Freelancer Financial & Tax Checkup | FilingDeck",
         "meta_description": "Get a comprehensive financial checkup for your freelance business. Optimize taxes, review compliance, and plan for growth.",
         "what": "A comprehensive review designed specifically for freelancers, consultants, and gig workers. We analyze your income streams, current tax structure, deductions, and compliance status to identify risks and opportunities for saving money.",
         "benefits": [
@@ -543,45 +448,12 @@ SERVICE_DETAILS = [
         "penalty": "No specific penalty, but ignoring financial health can lead to missed savings, incorrect filings, and unexpected tax liabilities.",
         "color": "#10b981",
     },
-    {
-        "id": "net-worth",
-        "icon": "📜",
-        "name": "Net Worth Certificate",
-        "tagline": "Certified statement of your financial assets and liabilities",
-        "meta_title": "CA Certified Net Worth Certificate | FileSure",
-        "meta_description": "Get a CA certified Net Worth Certificate for visa applications, bank loans, or franchising. Fast turnaround and professional formatting.",
-        "what": "A Net Worth Certificate is a document compiled and certified by a Chartered Accountant. It details an individual's or business's total assets minus their liabilities, providing an accurate snapshot of their financial standing.",
-        "benefits": [
-            "Essential for Visa and Immigration applications (especially for students and investors)",
-            "Required by banks for processing large loans or overdraft facilities",
-            "Needed when applying for franchise or dealership licenses",
-            "Useful for proving financial stability to partners or investors",
-        ],
-        "requirements": [
-            "Bank statements and fixed deposit receipts",
-            "Property valuation reports or ownership documents",
-            "Demat account statements (for stocks/mutual funds)",
-            "Details of any outstanding loans or liabilities",
-            "Identity proof (PAN/Aadhaar)",
-        ],
-        "process_steps": [
-            {"title": "Submit Asset Details", "desc": "Provide documentation for your liquid and illiquid assets, and any liabilities."},
-            {"title": "Evaluation", "desc": "Our team evaluates the documents to accurately calculate your net worth."},
-            {"title": "Draft Review", "desc": "We share a draft of the certificate for your review and confirmation."},
-            {"title": "CA Certification", "desc": "A certified Chartered Accountant issues and signs the final Net Worth Certificate."},
-        ],
-        "faqs": [
-            {"q": "Why do I need a CA to certify it?", "a": "Authorities like embassies and banks require a certified professional (CA) to verify that the declared assets and liabilities are accurate and backed by evidence."},
-            {"q": "How old should the documents be?", "a": "Documents like bank statements and valuations should ideally be recent, usually not older than 3 months, to reflect your current financial status."},
-        ],
-        "penalty": "Submitting incorrect or uncertified financial information for visas or loans can lead to application rejection or legal consequences.",
-        "color": "#6366f1",
-    },
+
 ]
 
 TEAM_MEMBERS = [
     {
-        "name": "Kavya",
+        "name": "Kavya Kajavadra",
         "role": "Tech Lead",
         "credential": "Web Developer",
         "description": "Builds the platform, automates workflows, and ensures a seamless digital experience for every client.",
@@ -589,31 +461,31 @@ TEAM_MEMBERS = [
         "color": "#6366f1",
     },
     {
-        "name": "Parth",
+        "name": "Parth Mehta",
         "role": "Tax & Compliance",
-        "credential": "CA Articleship",
+        "credential": "CA Finalist",
         "description": "Handles GST filing, TDS returns, income tax, and ensures your tax compliance is always on track.",
         "initials": "P",
         "color": "#10b981",
     },
     {
-        "name": "Yug",
+        "name": "Yug Jain",
         "role": "Tax Advisory",
-        "credential": "CA Student",
+        "credential": "CA Aspirant",
         "description": "Specializes in tax planning, financial advisory, and helping businesses optimize their tax structure.",
         "initials": "Y",
         "color": "#f59e0b",
     },
     {
-        "name": "Bhavyy",
-        "role": "Company Law & Compliance",
-        "credential": "CS Executive",
-        "description": "Manages company incorporations, ROC filings, and all corporate law compliance matters.",
-        "initials": "B",
-        "color": "#ef4444",
+        "name": "Deep Patel",
+        "role": "Accounting Operations",
+        "credential": "BAF | Taxation & Tally",
+        "description": "Handles cloud bookkeeping, GST data prep, e-Way bills, and in-depth research and analysis to keep client operations smooth.",
+        "initials": "D",
+        "color": "#8b5cf6",
     },
     {
-        "name": "Nilkanth",
+        "name": "Nilkanth Saliya",
         "role": "Financial Planning",
         "credential": "BFM Student",
         "description": "Provides financial market insights, investment guidance, and helps clients with banking and loan advisory.",
@@ -621,22 +493,22 @@ TEAM_MEMBERS = [
         "color": "#8b5cf6",
     },
     {
-        "name": "Nisarg",
-        "role": "Tech & Research",
-        "credential": "Engineering Student",
-        "description": "Supports platform development, conducts market research, and manages digital presence.",
-        "initials": "Ni",
-        "color": "#06b6d4",
+        "name": "Bhavyy Jain",
+        "role": "Legal & Compliance Advisory",
+        "credential": "CS Executive",
+        "description": "Specializes in MSME registrations, business licensing, trademark filing, and drafting rock-solid contracts for freelancers and partnerships.",
+        "initials": "B",
+        "color": "#ef4444",
     },
 ]
 
 FAQ_ITEMS = [
     {
-        "question": "Who is FileSure for?",
-        "answer": "FileSure is for small business owners, freelancers, startups, and MSMEs in Mumbai, Thane, and Navi Mumbai who need affordable, reliable compliance and tax filing services.",
+        "question": "Who is FilingDeck for?",
+        "answer": "FilingDeck is for small business owners, freelancers, startups, and MSMEs in Mumbai, Thane, and Navi Mumbai who need affordable, reliable compliance and tax filing services.",
     },
     {
-        "question": "How is FileSure different from a traditional CA firm?",
+        "question": "How is FilingDeck different from a traditional CA firm?",
         "answer": "We combine professional CA/CS expertise with technology. You get automated reminders, a compliance calendar, digital communication via WhatsApp, and transparent pricing — all at a fraction of what traditional firms charge.",
     },
     {
@@ -648,7 +520,7 @@ FAQ_ITEMS = [
         "answer": "Absolutely. You can start with a single GST filing or a one-time service like GST Registration. No lock-in contracts — upgrade anytime.",
     },
     {
-        "question": "Is my financial data safe with FileSure?",
+        "question": "Is my financial data safe with FilingDeck?",
         "answer": "Yes. We follow strict data confidentiality practices. Your financial information is only used for filing purposes and is never shared with third parties.",
     },
     {
@@ -681,7 +553,7 @@ def index():
         faqs=FAQ_ITEMS,
         business_types=BUSINESS_TYPES,
         page_title="Affordable GST, Tax & Compliance Services | Mumbai & Thane",
-        page_description="FileSure offers affordable GST filing, ROC compliance, tax advisory, and company incorporation services for MSMEs and freelancers in Mumbai & Thane. Starting at ₹999/month.",
+        page_description="FilingDeck offers affordable GST filing, ROC compliance, tax advisory, and company incorporation services for MSMEs and freelancers in Mumbai & Thane. Starting at ₹999/month.",
     )
 
 
@@ -694,7 +566,7 @@ def services():
         one_time_services=ONE_TIME_SERVICES,
         service_details=SERVICE_DETAILS,
         page_title="Services & Pricing",
-        page_description="Explore FileSure's compliance packages and one-time services. GST filing, TDS, ROC, company incorporation, and more — all at transparent, affordable prices.",
+        page_description="Explore FilingDeck's compliance packages and one-time services. GST filing, TDS, ROC, company incorporation, and more — all at transparent, affordable prices.",
     )
 
 
@@ -710,7 +582,7 @@ def service_detail(service_id):
         "service_detail.html",
         svc=svc,
         other_services=other_services,
-        page_title=svc.get("meta_title", svc["name"] + " | FileSure"),
+        page_title=svc.get("meta_title", svc["name"] + " | FilingDeck"),
         page_description=svc.get("meta_description", svc["tagline"]),
     )
 
@@ -721,8 +593,8 @@ def about():
     return render_template(
         "about.html",
         team=TEAM_MEMBERS,
-        page_title="About Us — Meet the FileSure Team",
-        page_description="Meet the FileSure team — young CA, CS, and tech professionals making compliance affordable and hassle-free for MSMEs in Mumbai and Thane.",
+        page_title="About Us — Meet the FilingDeck Team",
+        page_description="Meet the FilingDeck team — young CA, CS, and tech professionals making compliance affordable and hassle-free for MSMEs in Mumbai and Thane.",
     )
 
 
@@ -751,7 +623,7 @@ def contact():
         plans=PLANS,
         one_time_services=ONE_TIME_SERVICES,
         page_title="Contact Us",
-        page_description="Get in touch with FileSure for GST filing, tax advisory, company incorporation, and compliance services in Mumbai and Thane.",
+        page_description="Get in touch with FilingDeck for GST filing, tax advisory, company incorporation, and compliance services in Mumbai and Thane.",
     )
 
 
