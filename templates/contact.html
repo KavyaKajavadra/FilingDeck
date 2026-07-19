@@ -3,58 +3,63 @@
 {% block content %}
 
 <!-- ── Page Header ────────────────────────────────────────────────────── -->
-<section class="page-header">
-    <div class="container">
-        <span class="section-label">Get in Touch</span>
-        <h1>Let's Talk About <span class="text-gradient">Your Business</span></h1>
-        <p>Fill out the form below or reach out on WhatsApp. We'll respond within 24 hours.</p>
+<section class="bg-white dark:bg-gray-900 transition-colors duration-200 py-20 border-b border-gray-100 dark:border-gray-700 dark:border-gray-800 text-center px-6">
+    <div class="max-w-4xl mx-auto">
+        <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-blue-100">Get in Touch</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-heading dark:text-white mb-6">
+            Let's Talk About <span class="text-blue-600 dark:text-blue-400">Your Business</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-body dark:text-gray-300 max-w-2xl mx-auto">
+            Fill out the form below or reach out on WhatsApp. We'll respond within 24 hours.
+        </p>
     </div>
 </section>
 
 <!-- ── Contact Section ────────────────────────────────────────────────── -->
-<section>
-    <div class="container">
-        <div class="contact-grid">
+<section class="py-24 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
 
             <!-- Contact Form -->
-            <div class="reveal">
-                <h2 style="margin-bottom: 1.5rem;">Send Us a <span class="text-gradient">Message</span></h2>
-                <form class="glass-card" style="padding: 2.5rem;" action="{{ url_for('contact') }}" method="POST">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Your name" required>
+            <div class="lg:col-span-3">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">Send Us a <span class="text-blue-600 dark:text-blue-400">Message</span></h2>
+                <form class="bg-white dark:bg-gray-900 transition-colors duration-200 p-8 md:p-10 rounded-3xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm" action="{{ url_for('contact') }}" method="POST">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="name">Full Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Your name" required>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="98XXXXXXXX" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="business_name">Business Name</label>
-                            <input type="text" id="business_name" name="business_name" class="form-control" placeholder="Your business name">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="phone">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="98XXXXXXXX" required>
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="business_type">Business Type</label>
-                            <select id="business_type" name="business_type" class="form-control">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="email">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="you@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="business_name">Business Name</label>
+                            <input type="text" id="business_name" name="business_name" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Your business name">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="business_type">Business Type</label>
+                            <select id="business_type" name="business_type" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white dark:bg-gray-900 transition-colors duration-200 dark:bg-gray-900">
                                 <option value="" disabled selected>Select type</option>
                                 {% for key, label in business_types.items() %}
                                 <option value="{{ key }}">{{ label }}</option>
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="service_interested">Service Interested In</label>
-                            <select id="service_interested" name="service_interested" class="form-control">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="service_interested">Service Interested In</label>
+                            <select id="service_interested" name="service_interested" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white dark:bg-gray-900 transition-colors duration-200 dark:bg-gray-900">
                                 <option value="" disabled selected>Select service</option>
                                 {% for plan in plans %}
                                 <option value="{{ plan.name }} Plan">{{ plan.name }} Plan — ₹{{ plan.price }}{{ plan.period }}</option>
@@ -67,54 +72,75 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" class="form-control" placeholder="Tell us about your business and what you need help with..."></textarea>
+                    <div class="mb-8">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Tell us about your business and what you need help with..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                    <button type="submit" class="w-full bg-brand-dark text-white text-lg font-bold py-4 rounded-xl shadow-md hover:shadow-lg hover:bg-gray-800 transition-all">
                         Send Message
                     </button>
                 </form>
             </div>
 
             <!-- Contact Info -->
-            <div class="contact-info-cards reveal">
-                <div class="glass-card contact-info-card">
-                    <span class="icon">💬</span>
+            <div class="lg:col-span-2 space-y-6">
+                
+                <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-8 rounded-3xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm flex items-start">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center text-2xl shrink-0 mr-6">
+                        💬
+                    </div>
                     <div>
-                        <h3>WhatsApp (Fastest)</h3>
-                        <p>Chat with us instantly. We typically respond within 1-2 hours.</p>
-                        <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-whatsapp btn-sm" style="margin-top: 0.75rem;">Open WhatsApp</a>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">WhatsApp (Fastest)</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Chat with us instantly. We typically respond within 1-2 hours.</p>
+                        <a href="{{ whatsapp_link }}" target="_blank" class="inline-flex items-center text-sm font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-4 py-2 rounded-lg hover:bg-green-100 transition-colors">
+                            Open WhatsApp
+                        </a>
                     </div>
                 </div>
 
-                <div class="glass-card contact-info-card">
-                    <span class="icon">📧</span>
+                <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-8 rounded-3xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm flex items-start">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-2xl shrink-0 mr-6">
+                        📧
+                    </div>
                     <div>
-                        <h3>Email</h3>
-                        <p>For detailed queries and document sharing.</p>
-                        <a href="mailto:hello@filingdeck.in" style="color: var(--accent-blue-light);">hello@filingdeck.in</a>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Email</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">For detailed queries and document sharing.</p>
+                        <a href="mailto:helo.filingdeck@gmail.com" class="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">helo.filingdeck@gmail.com</a>
                     </div>
                 </div>
 
-                <div class="glass-card contact-info-card">
-                    <span class="icon">📍</span>
+                <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-8 rounded-3xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm flex items-start">
+                    <div class="w-12 h-12 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-xl flex items-center justify-center text-2xl shrink-0 mr-6">
+                        📞
+                    </div>
                     <div>
-                        <h3>Service Area</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.25rem;">
-                            Mumbai, Thane, Navi Mumbai & all of Maharashtra. Digital services available pan-India.
-                        </p>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Phone</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">Call us directly during working hours.</p>
+                        <p class="text-gray-900 dark:text-gray-100 font-medium text-sm">8850230153 / 8928030930</p>
                     </div>
                 </div>
 
-                <div class="glass-card contact-info-card">
-                    <span class="icon">🕐</span>
+                <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-8 rounded-3xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm flex items-start">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center text-2xl shrink-0 mr-6">
+                        📍
+                    </div>
                     <div>
-                        <h3>Working Hours</h3>
-                        <p>Monday – Saturday: 10 AM – 7 PM<br>Sunday: Closed (WhatsApp available)</p>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Service Area</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Mumbai, Thane, Navi Mumbai & all of Maharashtra. Digital services available pan-India.</p>
                     </div>
                 </div>
+
+                <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-8 rounded-3xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm flex items-start">
+                    <div class="w-12 h-12 bg-orange-100 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center text-2xl shrink-0 mr-6">
+                        🕐
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Working Hours</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Monday – Saturday: 10 AM – 7 PM<br>Sunday: Closed (WhatsApp available)</p>
+                    </div>
+                </div>
+
             </div>
 
         </div>

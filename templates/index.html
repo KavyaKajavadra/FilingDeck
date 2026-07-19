@@ -3,37 +3,129 @@
 {% block content %}
 
 <!-- ── Hero Section ────────────────────────────────────────────────────── -->
-<section class="hero" id="hero">
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="dot"></span>
-                Serving MSMEs in Mumbai & Thane
+<section class="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24 flex flex-col lg:flex-row items-center justify-between">
+    <!-- Left Column: Content -->
+    <div class="w-full lg:w-1/2 flex flex-col items-start z-10 mb-12 lg:mb-0">
+        <div class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-blue-100 shadow-sm">
+            Serving MSMEs in Mumbai & Thane
+        </div>
+        
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-text-heading dark:text-white leading-[1.1] mb-6">
+            Stop Worrying About<br/><span class="text-blue-600 dark:text-blue-400">Compliance Deadlines.</span><br/>We Handle It All.
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-text-body dark:text-gray-300 leading-relaxed max-w-lg mb-10">
+            GST filing, TDS returns, and tax compliance — done right, on time, every time. Starting at just <strong class="text-gray-900 dark:text-gray-100">₹999/month</strong>.
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a href="{{ url_for('services') }}" class="bg-brand-dark text-white text-center text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-800 transition-all">
+                View Plans & Pricing
+            </a>
+            <a href="{{ whatsapp_link }}" target="_blank" class="bg-green-500 text-white text-center text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-green-600 transition-all flex items-center justify-center gap-2">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                WhatsApp Us
+            </a>
+        </div>
+        
+        <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-sm font-medium text-gray-500 dark:text-gray-400">
+            <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg> 256-bit Encryption</span>
+            <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg> MCA Compliant</span>
+        </div>
+    </div>
+    
+    <!-- Right Column: Illustration -->
+    <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
+        <div class="w-full max-w-lg aspect-square bg-white dark:bg-gray-900 transition-colors duration-200 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl flex flex-col overflow-hidden relative">
+            <!-- Mac Window Header -->
+            <div class="h-10 bg-gray-50 dark:bg-gray-800 transition-colors duration-200 border-b border-gray-200 dark:border-gray-700 flex items-center px-4 gap-2 shrink-0">
+                <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div class="w-3 h-3 rounded-full bg-green-400"></div>
             </div>
-
-            <h1>
-                Stop Worrying About <span class="text-gradient">Compliance Deadlines.</span>
-                <br>We Handle It All.
-            </h1>
-
-            <p>
-                GST filing, TDS returns, and tax compliance — done right, on time, every time. Starting at just <strong>₹999/month</strong>.
-            </p>
-
-            <div class="hero-ctas">
-                <a href="{{ url_for('services') }}" class="btn btn-primary btn-lg">View Plans & Pricing</a>
-                <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-whatsapp btn-lg">💬 WhatsApp Us</a>
-            </div>
-
-            <div class="hero-trust-bar reveal">
-                <div class="trust-badge">
-                    <i>🔒</i> Bank-Level Security & 256-bit Encryption
+            
+            <!-- App Body -->
+            <div class="flex-1 flex overflow-hidden">
+                <!-- Sidebar -->
+                <div class="w-1/4 bg-gray-50 dark:bg-gray-800/50 border-r border-gray-100 dark:border-gray-700 flex flex-col p-3 gap-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-6 h-6 bg-blue-500 rounded flex items-center justify-center">
+                            <span class="text-white text-[10px] font-bold">F</span>
+                        </div>
+                        <div class="h-2 w-12 bg-gray-300 dark:bg-gray-600 rounded"></div>
+                    </div>
+                    <!-- Nav Items -->
+                    <div class="flex items-center gap-2 p-1.5 bg-blue-100 dark:bg-blue-900/40 rounded">
+                        <div class="w-3 h-3 rounded-sm bg-blue-500"></div>
+                        <div class="h-2 w-10 bg-blue-400 rounded"></div>
+                    </div>
+                    <div class="flex items-center gap-2 p-1.5">
+                        <div class="w-3 h-3 rounded-sm bg-gray-300 dark:bg-gray-600"></div>
+                        <div class="h-2 w-12 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                    </div>
+                    <div class="flex items-center gap-2 p-1.5">
+                        <div class="w-3 h-3 rounded-sm bg-gray-300 dark:bg-gray-600"></div>
+                        <div class="h-2 w-8 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                    </div>
                 </div>
-                <div class="trust-badge">
-                    <i>✓</i> Reviewed by Certified Partner CAs
-                </div>
-                <div class="trust-badge">
-                    <i>🏢</i> MCA & Income Tax Dept Compliant
+
+                <!-- Main Content -->
+                <div class="flex-1 bg-white dark:bg-gray-900 flex flex-col p-4 gap-4">
+                    <!-- Top Bar -->
+                    <div class="flex justify-between items-center">
+                        <div class="h-3 w-24 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                        <div class="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 border-2 border-white dark:border-gray-800"></div>
+                    </div>
+
+                    <!-- Status Banner -->
+                    <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-3 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-green-600 dark:text-green-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-green-800 dark:text-green-300">100% Compliant</div>
+                            <div class="text-[10px] text-green-600 dark:text-green-400">All filings are up to date.</div>
+                        </div>
+                    </div>
+
+                    <!-- Widgets Grid -->
+                    <div class="flex-1 grid grid-cols-2 gap-3">
+                        <!-- Upcoming Deadline -->
+                        <div class="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-lg p-3 flex flex-col shadow-sm">
+                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Next Deadline</div>
+                            <div class="text-sm font-bold text-gray-900 dark:text-gray-100 mb-1">GSTR-3B</div>
+                            <div class="text-xs text-blue-600 dark:text-blue-400 font-medium bg-blue-50 dark:bg-blue-900/30 self-start px-2 py-0.5 rounded">Due in 5 days</div>
+                        </div>
+
+                        <!-- Mini Chart -->
+                        <div class="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-lg p-3 flex flex-col shadow-sm">
+                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Tax Savings</div>
+                            <div class="flex-1 flex items-end gap-1.5 mt-1">
+                                <div class="w-full bg-blue-200 dark:bg-blue-900 h-1/4 rounded-t-sm"></div>
+                                <div class="w-full bg-blue-400 dark:bg-blue-700 h-1/2 rounded-t-sm"></div>
+                                <div class="w-full bg-blue-500 dark:bg-blue-500 h-3/4 rounded-t-sm"></div>
+                                <div class="w-full bg-blue-600 dark:bg-blue-400 h-full rounded-t-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity List -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-lg p-3 shadow-sm">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Recent Activity</div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                <div class="h-2 w-20 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                                <div class="h-2 w-24 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,239 +133,130 @@
 </section>
 
 <!-- ── Trust & Security Section ────────────────────────────────────────── -->
-<section class="trust-section" style="background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">Why Choose FilingDeck</span>
-            <h2 class="section-title">Built on <span class="text-gradient">Trust & Transparency</span></h2>
-            <p class="section-subtitle">We handle your most sensitive data. Here is how we keep you safe and informed.</p>
+<section class="bg-white dark:bg-gray-900 transition-colors duration-200 py-20 border-y border-gray-100 dark:border-gray-700 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-4">Built on Trust & Transparency</h2>
+            <p class="text-lg text-text-body dark:text-gray-300">We handle your most sensitive data. Here is how we keep you safe and informed.</p>
         </div>
 
-        <div class="trust-features-grid stagger-children">
-            <div class="trust-feature-card reveal" style="--trust-color: var(--accent-blue);">
-                <span class="trust-icon">🏦</span>
-                <h3>Bank-Level Security</h3>
-                <p>Your PAN, Aadhaar, and financial data are secured with 256-bit SSL encryption. We never share your data with third parties. 100% Confidentiality guaranteed.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 text-2xl">🏦</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Bank-Level Security</h3>
+                <p class="text-gray-600 dark:text-gray-400">Your PAN, Aadhaar, and financial data are secured with 256-bit SSL encryption. We never share your data. 100% Confidentiality guaranteed.</p>
             </div>
+            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800">
+                <div class="w-12 h-12 bg-green-100 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center mb-6 text-2xl">🛡️</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Radical Transparency</h3>
+                <p class="text-gray-600 dark:text-gray-400">No hidden fees. No surprise bills. What you see on our pricing page is exactly what you pay. We believe in earning your trust through honesty.</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800">
+                <div class="w-12 h-12 bg-purple-100 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-6 text-2xl">💬</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Zero Legal Jargon</h3>
+                <p class="text-gray-600 dark:text-gray-400">Taxes are complicated enough. We explain your compliance status and requirements in plain English. No intimidating jargon.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Pain Points / How it Works ─────────────────────────────────────── -->
+<section class="bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 py-24">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-4">Three Simple Steps to Stress-Free Compliance</h2>
+        <p class="text-lg text-text-body dark:text-gray-300 mb-16 max-w-2xl mx-auto">Stop worrying about missed deadlines and confusing portals.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            <!-- Connecting Line for desktop -->
+            <div class="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gray-200 z-0"></div>
             
-            <div class="trust-feature-card reveal" style="--trust-color: var(--accent-emerald);">
-                <span class="trust-icon">🛡️</span>
-                <h3>Radical Transparency</h3>
-                <p>No hidden fees. No surprise bills. What you see on our pricing page is exactly what you pay. We believe in earning your trust through honesty.</p>
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="w-24 h-24 bg-white dark:bg-gray-900 transition-colors duration-200 rounded-full border-4 border-blue-50 flex items-center justify-center shadow-sm mb-6 text-2xl font-bold text-blue-600 dark:text-blue-400">1</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Share Your Details</h3>
+                <p class="text-gray-600 dark:text-gray-400">Tell us your business type and GST number. A quick chat is all it takes.</p>
             </div>
-            
-            <div class="trust-feature-card reveal" style="--trust-color: var(--accent-purple);">
-                <span class="trust-icon">💬</span>
-                <h3>Zero Legal Jargon</h3>
-                <p>Taxes are complicated enough. We explain your compliance status, penalties, and requirements in plain, simple English. No intimidating jargon, no stress.</p>
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="w-24 h-24 bg-white dark:bg-gray-900 transition-colors duration-200 rounded-full border-4 border-blue-50 flex items-center justify-center shadow-sm mb-6 text-2xl font-bold text-blue-600 dark:text-blue-400">2</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">We Handle Everything</h3>
+                <p class="text-gray-600 dark:text-gray-400">Our CA/CS team files your returns and tracks deadlines on your behalf.</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ── Pain Points Section ────────────────────────────────────────────── -->
-<section class="pain-points" id="problems">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">The Problem</span>
-            <h2 class="section-title">Running a Business is Hard Enough.<br><span class="text-gradient">Compliance Shouldn't Be.</span></h2>
-            <p class="section-subtitle">Most small business owners face these compliance nightmares daily</p>
-        </div>
-
-        <div class="pain-grid stagger-children">
-            <div class="glass-card pain-card reveal">
-                <span class="pain-icon">📅</span>
-                <h3>Missed Deadlines</h3>
-                <p>GST, TDS, ITR — so many dates to track. Miss one and you're hit with penalties starting at ₹50/day.</p>
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="w-24 h-24 bg-white dark:bg-gray-900 transition-colors duration-200 rounded-full border-4 border-blue-50 flex items-center justify-center shadow-sm mb-6 text-2xl font-bold text-blue-600 dark:text-blue-400">3</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">You Stay Compliant</h3>
+                <p class="text-gray-600 dark:text-gray-400">No penalties, no stress. Focus on your business while we keep you 100% safe.</p>
             </div>
-            <div class="glass-card pain-card reveal">
-                <span class="pain-icon">💸</span>
-                <h3>Expensive CA Firms</h3>
-                <p>Traditional CA firms charge ₹15,000-50,000/year. That's too much for a small business doing ₹5-10 lakh turnover.</p>
-            </div>
-            <div class="glass-card pain-card reveal">
-                <span class="pain-icon">😵</span>
-                <h3>Confusing Portals</h3>
-                <p>GST portal, income tax portal, MCA portal — each has its own login, its own interface, its own problems.</p>
-            </div>
-            <div class="glass-card pain-card reveal">
-                <span class="pain-icon">⚠️</span>
-                <h3>Surprise Notices</h3>
-                <p>Got a GST notice? Income tax notice? Most small business owners panic — they don't even know what it means.</p>
-            </div>
-            <div class="glass-card pain-card reveal">
-                <span class="pain-icon">🔍</span>
-                <h3>No Visibility</h3>
-                <p>You don't know what's been filed, what's pending, or what's coming next. Zero transparency from your current CA.</p>
-            </div>
-            <div class="glass-card pain-card reveal">
-                <span class="pain-icon">🕐</span>
-                <h3>Wasted Time</h3>
-                <p>Hours spent on compliance is hours NOT spent on growing your business. You didn't start a business to file returns.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ── Services / Pricing Section ─────────────────────────────────────── -->
-<section class="services-section" id="pricing">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">Plans & Pricing</span>
-            <h2 class="section-title">Transparent Pricing. <span class="text-gradient">No Hidden Fees.</span></h2>
-            <p class="section-subtitle">Choose the plan that fits your business. Upgrade or downgrade anytime.</p>
-        </div>
-
-        <div class="pricing-grid">
-            {% for plan in plans %}
-            <div class="pricing-card reveal {% if plan.highlight %}highlighted{% endif %}">
-                <h3>{{ plan.name }}</h3>
-                <p class="description">{{ plan.description }}</p>
-                <div class="price">
-                    <span class="currency">₹</span>{{ plan.price }}<span class="period">{{ plan.period }}</span>
-                </div>
-                <ul class="pricing-features">
-                    {% for feature in plan.features %}
-                    <li>{{ feature }}</li>
-                    {% endfor %}
-                </ul>
-                <a href="{{ whatsapp_link }}" target="_blank" class="btn {% if plan.highlight %}btn-primary{% else %}btn-secondary{% endif %}">
-                    {{ plan.cta }}
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<!-- ── How It Works ───────────────────────────────────────────────────── -->
-<section class="how-it-works" id="how-it-works">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">How It Works</span>
-            <h2 class="section-title">Three Simple Steps to <span class="text-gradient">Stress-Free Compliance</span></h2>
-        </div>
-
-        <div class="steps-grid">
-            <div class="step-card reveal">
-                <div class="step-number">1</div>
-                <h3>Share Your Details</h3>
-                <p>Tell us your business type, GST number, and current filing status. A quick WhatsApp chat or form is all it takes.</p>
-            </div>
-            <div class="step-card reveal">
-                <div class="step-number">2</div>
-                <h3>We Handle Everything</h3>
-                <p>Our CA/CS team files your returns, tracks deadlines, and sends you reminders. You get updates on WhatsApp.</p>
-            </div>
-            <div class="step-card reveal">
-                <div class="step-number">3</div>
-                <h3>You Stay Compliant</h3>
-                <p>No missed deadlines, no penalties, no stress. Focus on your business while we keep you 100% compliant.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ── Team Section ───────────────────────────────────────────────────── -->
-<section class="team-section" id="team">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">Our Team</span>
-            <h2 class="section-title">Young Professionals. <span class="text-gradient">Serious Expertise.</span></h2>
-            <p class="section-subtitle">A unique blend of CA, CS, Finance, and Tech professionals working together for your business.</p>
-        </div>
-
-        <div class="team-grid stagger-children">
-            {% for member in team %}
-            <div class="glass-card team-card reveal">
-                <div class="team-avatar" style="background: {{ member.color }};">
-                    {{ member.initials }}
-                </div>
-                <h3>{{ member.name }}</h3>
-                <div class="team-role">{{ member.role }}</div>
-                <div class="team-credential">{{ member.credential }}</div>
-                <p>{{ member.description }}</p>
-            </div>
-            {% endfor %}
         </div>
     </div>
 </section>
 
 <!-- ── Compliance Calendar Tool ───────────────────────────────────────── -->
-<section class="compliance-tool" id="compliance-tool">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">Free Tool</span>
-            <h2 class="section-title">Check Your <span class="text-gradient">Compliance Calendar</span></h2>
-            <p class="section-subtitle">Enter your business type to see all upcoming filing deadlines, penalties, and compliance requirements.</p>
-        </div>
-
-        <div class="tool-wrapper reveal">
-            <form class="glass-card tool-form" action="{{ url_for('compliance_calendar') }}" method="POST">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Raj Sharma" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="98XXXXXXXX" required>
-                    </div>
+<section class="bg-white dark:bg-gray-900 transition-colors duration-200 py-24 border-y border-gray-100 dark:border-gray-700 dark:border-gray-800" id="compliance-tool">
+    <div class="max-w-4xl mx-auto px-6 md:px-12 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-4">Check Your Compliance Calendar</h2>
+        <p class="text-lg text-text-body dark:text-gray-300 mb-12">Enter your business type to see all upcoming filing deadlines and requirements.</p>
+        
+        <form class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm max-w-2xl mx-auto text-left" action="{{ url_for('compliance_calendar') }}" method="POST">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="name">Your Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Raj Sharma" required>
                 </div>
-
-                <div class="form-group">
-                    <label for="business_type">Business Type</label>
-                    <select id="business_type" name="business_type" class="form-control" required>
-                        <option value="" disabled selected>Select your business type</option>
-                        {% for key, label in business_types.items() %}
-                        <option value="{{ key }}">{{ label }}</option>
-                        {% endfor %}
-                    </select>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="98XXXXXXXX" required>
                 </div>
-
-                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
-                    🔍 Show My Compliance Calendar
-                </button>
-            </form>
-        </div>
+            </div>
+            <div class="mb-8">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="business_type">Business Type</label>
+                <select id="business_type" name="business_type" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white dark:bg-gray-900 transition-colors duration-200 dark:bg-gray-900" required>
+                    <option value="" disabled selected>Select your business type...</option>
+                    {% for key, label in business_types.items() %}
+                    <option value="{{ key }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-xl hover:bg-gray-800 transition-colors shadow-md">
+                Show My Compliance Calendar
+            </button>
+        </form>
     </div>
 </section>
 
 <!-- ── FAQ Section ────────────────────────────────────────────────────── -->
-<section class="faq-section" id="faq">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">FAQs</span>
-            <h2 class="section-title">Got Questions? <span class="text-gradient">We've Got Answers.</span></h2>
-        </div>
-
-        <div class="faq-list reveal">
+<section class="bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 py-24">
+    <div class="max-w-3xl mx-auto px-6 md:px-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-12 text-center">Got Questions? We've Got Answers.</h2>
+        
+        <div class="space-y-4">
             {% for faq in faqs %}
-            <div class="faq-item">
-                <button class="faq-question" type="button">
-                    {{ faq.question }}
-                    <span class="icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>{{ faq.answer }}</p>
+            <details class="bg-white dark:bg-gray-900 transition-colors duration-200 rounded-xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm group">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900 dark:text-gray-100">
+                    <span>{{ faq.question }}</span>
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="text-gray-600 dark:text-gray-400 p-6 pt-0 leading-relaxed">
+                    {{ faq.answer }}
                 </div>
-            </div>
+            </details>
             {% endfor %}
         </div>
     </div>
 </section>
 
-
 <!-- ── CTA Section ────────────────────────────────────────────────────── -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-box reveal">
-            <h2>Ready to Make Compliance <span class="text-gradient">Effortless?</span></h2>
-            <p>Join FilingDeck today. No contracts, no hidden fees. Cancel anytime.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Get Started — ₹999/month</a>
-                <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-whatsapp btn-lg">💬 Chat on WhatsApp</a>
-            </div>
+<section class="bg-brand-dark py-24 text-center px-6">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ready to Make Compliance Effortless?</h2>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Join FilingDeck today. No contracts, no hidden fees. Cancel anytime.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ url_for('contact') }}" class="bg-white dark:bg-gray-900 transition-colors duration-200 text-brand-dark text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all">
+                Get Started
+            </a>
+            <a href="{{ whatsapp_link }}" target="_blank" class="bg-green-500 text-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-green-600 transition-all">
+                Chat on WhatsApp
+            </a>
         </div>
     </div>
 </section>

@@ -3,148 +3,189 @@
 {% block content %}
 
 <!-- ── Service Hero ────────────────────────────────────────────────────── -->
-<section class="svc-detail-hero" style="--svc-color: {{ svc.color }}">
-    <div class="container">
-        <a href="{{ url_for('services') }}" class="svc-back-link">← Back to All Services</a>
-        <div class="svc-detail-hero-content">
-            <span class="svc-detail-icon">{{ svc.icon }}</span>
-            <h1>{{ svc.name }}</h1>
-            <p class="svc-detail-tagline">{{ svc.tagline }}</p>
-            <div class="svc-detail-hero-ctas">
-                <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-primary" style="background: {{ svc.color }};">💬 Get Started on WhatsApp</a>
-                <a href="#process" class="btn btn-secondary">See How It Works ↓</a>
+<section class="relative bg-brand-dark py-20 text-center px-6 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
+    <div class="max-w-4xl mx-auto relative z-10">
+        <a href="{{ url_for('services') }}" class="inline-flex items-center text-gray-300 hover:text-white transition-colors text-sm font-medium mb-8">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to All Services
+        </a>
+        
+        <div class="flex justify-center mb-6">
+            <div class="w-20 h-20 bg-white dark:bg-gray-900 transition-colors duration-200 rounded-2xl flex items-center justify-center text-4xl shadow-xl shadow-black/20" style="color: {{ svc.color }}">
+                {{ svc.icon }}
             </div>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+            {{ svc.name }}
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+            {{ svc.tagline }}
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ whatsapp_link }}" target="_blank" class="text-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2" style="background-color: {{ svc.color }};">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Get Started on WhatsApp
+            </a>
+            <a href="#process" class="bg-gray-800 text-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-700 transition-all flex items-center justify-center border border-gray-700">
+                See How It Works <span class="ml-2">↓</span>
+            </a>
         </div>
     </div>
 </section>
 
 <!-- ── Main Content with Sidebar ──────────────────────────────────────── -->
-<section class="svc-detail-main">
-    <div class="container">
-        <div class="svc-detail-layout">
-
-            <!-- Sidebar Navigation -->
-            <aside class="svc-sidebar">
-                <nav class="svc-sidebar-nav">
-                    <h4>On This Page</h4>
-                    <ul>
-                        <li><a href="#overview">📖 Overview</a></li>
-                        <li><a href="#benefits">✅ Benefits</a></li>
-                        <li><a href="#process">⚙️ How It Works</a></li>
-                        <li><a href="#documents">📄 Documents</a></li>
-                        <li><a href="#penalty">⚠️ Penalties</a></li>
-                        <li><a href="#faqs">❓ FAQs</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Other Services -->
-                <div class="svc-sidebar-others">
-                    <h4>Other Services</h4>
-                    <ul>
-                        {% for other in other_services %}
-                        <li>
-                            <a href="{{ url_for('service_detail', service_id=other.id) }}">
-                                <span>{{ other.icon }}</span> {{ other.name }}
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </aside>
-
-            <!-- Main Content -->
-            <div class="svc-detail-content">
-
-                <!-- Overview -->
-                <div class="svc-section" id="overview">
-                    <h2>📖 What is {{ svc.name }}?</h2>
-                    <p class="svc-detail-text">{{ svc.what }}</p>
-                </div>
-
-                <!-- Benefits -->
-                <div class="svc-section" id="benefits">
-                    <h2>✅ Benefits of {{ svc.name }}</h2>
-                    <div class="svc-benefits-grid">
-                        {% for benefit in svc.benefits %}
-                        <div class="svc-benefit-item">
-                            <span class="benefit-check" style="color: {{ svc.color }};">✓</span>
-                            <p>{{ benefit }}</p>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Process Steps -->
-                <div class="svc-section" id="process">
-                    <h2>⚙️ How FilingDeck Handles Your {{ svc.name }}</h2>
-                    <div class="svc-process-timeline">
-                        {% for step in svc.process_steps %}
-                        <div class="svc-process-step" style="--svc-color: {{ svc.color }}">
-                            <div class="step-number" style="background: {{ svc.color }};">{{ loop.index }}</div>
-                            <div class="step-content">
-                                <h3>{{ step.title }}</h3>
-                                <p>{{ step.desc }}</p>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Documents Required -->
-                <div class="svc-section" id="documents">
-                    <h2>📄 Documents Required</h2>
-                    <div class="svc-docs-grid">
-                        {% for req in svc.requirements %}
-                        <div class="svc-doc-item">
-                            <span class="doc-bullet" style="background: {{ svc.color }};"></span>
-                            <p>{{ req }}</p>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Penalty Warning -->
-                <div class="svc-section" id="penalty">
-                    <h2>⚠️ Penalty for Non-Compliance</h2>
-                    <div class="svc-penalty-box" style="--svc-color: {{ svc.color }}">
-                        <div class="penalty-box-icon">⚠️</div>
-                        <div class="penalty-box-content">
-                            <p>{{ svc.penalty }}</p>
-                        </div>
-                    </div>
-                    <p class="svc-penalty-note">Don't risk it — let FilingDeck handle your compliance on time, every time.</p>
-                </div>
-
-                <!-- FAQs -->
-                <div class="svc-section" id="faqs">
-                    <h2>❓ Frequently Asked Questions</h2>
-                    <div class="svc-faq-list">
-                        {% for faq in svc.faqs %}
-                        <div class="svc-faq-item">
-                            <button class="svc-faq-q" onclick="this.parentElement.classList.toggle('open')">
-                                <span>{{ faq.q }}</span>
-                                <span class="faq-arrow">▼</span>
-                            </button>
-                            <div class="svc-faq-a">
-                                <p>{{ faq.a }}</p>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- CTA -->
-                <div class="svc-section svc-final-cta">
-                    <div class="svc-cta-card" style="--svc-color: {{ svc.color }}">
-                        <h2>Ready to Get Started with {{ svc.name }}?</h2>
-                        <p>Send us a message on WhatsApp and our team will guide you through the entire process — no jargon, no hassle.</p>
-                        <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-primary btn-lg" style="background: {{ svc.color }};">
-                            💬 Chat with FilingDeck Now
-                        </a>
-                    </div>
-                </div>
-
+<section class="py-16 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="lg:w-1/4 shrink-0">
+            <div class="sticky top-24 bg-white dark:bg-gray-900 transition-colors duration-200 rounded-2xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm p-6 mb-8">
+                <h4 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">On This Page</h4>
+                <ul class="space-y-1 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    <li><a href="#overview" class="block py-2 px-3 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors">📖 Overview</a></li>
+                    <li><a href="#benefits" class="block py-2 px-3 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors">✅ Benefits</a></li>
+                    <li><a href="#process" class="block py-2 px-3 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors">⚙️ How It Works</a></li>
+                    <li><a href="#documents" class="block py-2 px-3 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors">📄 Documents</a></li>
+                    <li><a href="#penalty" class="block py-2 px-3 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors">⚠️ Penalties</a></li>
+                    <li><a href="#faqs" class="block py-2 px-3 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors">❓ FAQs</a></li>
+                </ul>
             </div>
+            
+            <div class="sticky top-96 bg-white dark:bg-gray-900 transition-colors duration-200 rounded-2xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm p-6">
+                <h4 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Other Services</h4>
+                <ul class="space-y-1 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    {% for other in other_services %}
+                    <li>
+                        <a href="{{ url_for('service_detail', service_id=other.id) }}" class="block py-2 px-3 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors flex items-center">
+                            <span class="mr-2">{{ other.icon }}</span>
+                            <span class="truncate">{{ other.name }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="lg:w-3/4 flex flex-col gap-12">
+            
+            <!-- Overview -->
+            <div id="overview" class="scroll-mt-24">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="mr-3">📖</span> What is {{ svc.name }}?
+                </h2>
+                <div class="prose prose-lg text-gray-600 dark:text-gray-400 leading-relaxed bg-white dark:bg-gray-900 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800 shadow-sm">
+                    {{ svc.what }}
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div id="benefits" class="scroll-mt-24">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="mr-3">✅</span> Benefits of {{ svc.name }}
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% for benefit in svc.benefits %}
+                    <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-5 rounded-xl border border-gray-100 dark:border-gray-700 dark:border-gray-800 shadow-sm flex items-start">
+                        <svg class="w-6 h-6 shrink-0 mr-3" style="color: {{ svc.color }};" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p class="text-gray-700 dark:text-gray-300 font-medium">{{ benefit }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Process Steps -->
+            <div id="process" class="scroll-mt-24">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="mr-3">⚙️</span> How FilingDeck Handles Your {{ svc.name }}
+                </h2>
+                <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800 shadow-sm relative">
+                    <div class="absolute top-8 bottom-8 left-[3.25rem] w-0.5 bg-gray-100 dark:bg-gray-700"></div>
+                    <div class="space-y-8 relative">
+                        {% for step in svc.process_steps %}
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shrink-0 shadow-md ring-4 ring-white z-10" style="background-color: {{ svc.color }};">
+                                {{ loop.index }}
+                            </div>
+                            <div class="ml-6 pt-1.5">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ step.title }}</h3>
+                                <p class="text-gray-600 dark:text-gray-400">{{ step.desc }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents Required -->
+            <div id="documents" class="scroll-mt-24">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="mr-3">📄</span> Documents Required
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {% for req in svc.requirements %}
+                    <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-5 rounded-xl border border-gray-100 dark:border-gray-700 dark:border-gray-800 shadow-sm flex items-center">
+                        <div class="w-2.5 h-2.5 rounded-full mr-3 shrink-0" style="background-color: {{ svc.color }};"></div>
+                        <p class="text-gray-700 dark:text-gray-300 font-medium">{{ req }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Penalty Warning -->
+            <div id="penalty" class="scroll-mt-24">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="mr-3">⚠️</span> Penalty for Non-Compliance
+                </h2>
+                <div class="bg-red-50 border border-red-200 p-8 rounded-2xl flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left mb-4">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-3xl shrink-0">
+                        ⚠️
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-red-900 mb-2">Notice</h3>
+                        <p class="text-red-800 font-medium leading-relaxed">{{ svc.penalty }}</p>
+                    </div>
+                </div>
+                <p class="text-gray-500 dark:text-gray-400 italic text-sm text-center md:text-left">Don't risk it — let FilingDeck handle your compliance on time, every time.</p>
+            </div>
+
+            <!-- FAQs -->
+            <div id="faqs" class="scroll-mt-24">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="mr-3">❓</span> Frequently Asked Questions
+                </h2>
+                <div class="space-y-4">
+                    {% for faq in svc.faqs %}
+                    <details class="bg-white dark:bg-gray-900 transition-colors duration-200 rounded-xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm group">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900 dark:text-gray-100">
+                            <span>{{ faq.q }}</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 dark:text-gray-400 p-6 pt-0 leading-relaxed">
+                            {{ faq.a }}
+                        </div>
+                    </details>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-8 text-center p-12 rounded-3xl shadow-xl text-white relative overflow-hidden" style="background-color: {{ svc.color }};">
+                <div class="absolute inset-0 bg-black/10"></div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-4">Ready to Get Started with {{ svc.name }}?</h2>
+                    <p class="text-white/90 text-lg mb-8 max-w-xl mx-auto">Send us a message on WhatsApp and our team will guide you through the entire process — no jargon, no hassle.</p>
+                    <a href="{{ whatsapp_link }}" target="_blank" class="inline-flex bg-white dark:bg-gray-900 transition-colors duration-200 text-gray-900 dark:text-gray-100 text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all items-center gap-2">
+                        💬 Chat with FilingDeck Now
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>

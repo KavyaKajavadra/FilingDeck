@@ -3,25 +3,29 @@
 {% block content %}
 
 <!-- ── Page Header ────────────────────────────────────────────────────── -->
-<section class="page-header">
-    <div class="container">
-        <span class="section-label">Compliance Calendar</span>
-        <h1>Your Filing Deadlines — <span class="text-gradient">{{ business_type }}</span></h1>
-        <p>Click on any highlighted date to see detailed filing information.</p>
+<section class="bg-white dark:bg-gray-900 transition-colors duration-200 py-20 border-b border-gray-100 dark:border-gray-700 dark:border-gray-800 text-center px-6">
+    <div class="max-w-4xl mx-auto">
+        <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-blue-100">Compliance Calendar</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-heading dark:text-white mb-6">
+            Your Filing Deadlines — <span class="text-blue-600 dark:text-blue-400">{{ business_type }}</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-body dark:text-gray-300 max-w-2xl mx-auto">
+            Click on any highlighted date to see detailed filing information.
+        </p>
     </div>
 </section>
 
 <!-- ── Calendar Section ───────────────────────────────────────────────── -->
-<section>
-    <div class="container" style="max-width: 1100px;">
+<section class="py-24 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6">
+    <div class="max-w-6xl mx-auto">
 
         <!-- Legend -->
-        <div class="calendar-legend reveal">
-            <div class="legend-item"><span class="legend-dot safe"></span> Safe (15+ days)</div>
-            <div class="legend-item"><span class="legend-dot upcoming"></span> Upcoming (8-15 days)</div>
-            <div class="legend-item"><span class="legend-dot urgent"></span> Urgent (4-7 days)</div>
-            <div class="legend-item"><span class="legend-dot critical"></span> Critical (0-3 days)</div>
-            <div class="legend-item"><span class="legend-dot overdue"></span> Overdue</div>
+        <div class="flex flex-wrap gap-6 justify-center mb-12 p-6 bg-white dark:bg-gray-900 transition-colors duration-200 rounded-2xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm">
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"><span class="w-3 h-3 rounded-full bg-green-500"></span> Safe (15+ days)</div>
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"><span class="w-3 h-3 rounded-full bg-blue-500"></span> Upcoming (8-15 days)</div>
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"><span class="w-3 h-3 rounded-full bg-yellow-500"></span> Urgent (4-7 days)</div>
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"><span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span> Critical (0-3 days)</div>
+            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"><span class="w-3 h-3 rounded-full bg-red-700"></span> Overdue</div>
         </div>
 
         <!-- Calendar Grid — rendered by JS -->
@@ -29,7 +33,7 @@
 
         <!-- Detail Modal -->
         <div class="calendar-modal-overlay" id="calendarModal">
-            <div class="calendar-modal glass-card">
+            <div class="calendar-modal">
                 <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
                 <div class="modal-date-badge" id="modalDate"></div>
                 <div id="modalContent"></div>
@@ -38,23 +42,21 @@
 
         <!-- ── Compliance Summary ─────────────────────────────────────── -->
         {% if summary %}
-        <div class="section-header reveal" style="margin-top: 4rem;">
-            <span class="section-label">Full Requirements</span>
-            <h2 class="section-title">All Compliance for <span class="text-gradient">{{ business_type }}</span></h2>
+        <div class="mt-24 mb-16 text-center">
+            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100">Full Requirements</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">All Compliance for <span class="text-blue-600 dark:text-blue-400">{{ business_type }}</span></h2>
         </div>
 
         {% for category, filings in summary.items() %}
-        <div class="category-group reveal">
-            <div class="category-label">{{ category }}</div>
+        <div class="mb-12">
+            <div class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-6 pb-2 border-b border-gray-200 dark:border-gray-600 dark:border-gray-700">{{ category }}</div>
             {% for filing in filings %}
-            <div class="glass-card deadline-card" style="margin-bottom: 0.75rem;">
-                <div class="deadline-info">
-                    <h4>{{ filing.name }}</h4>
-                    <p>{{ filing.description }}</p>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">
-                        📋 {{ filing.frequency | capitalize }} filing — {{ filing.notes }}
-                    </p>
-                </div>
+            <div class="bg-white dark:bg-gray-900 transition-colors duration-200 p-6 rounded-2xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm mb-4 hover:shadow-md transition-shadow">
+                <h4 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{{ filing.name }}</h4>
+                <p class="text-gray-600 dark:text-gray-400 mb-2">{{ filing.description }}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                    📋 {{ filing.frequency | capitalize }} filing — {{ filing.notes }}
+                </p>
             </div>
             {% endfor %}
         </div>
@@ -62,12 +64,14 @@
         {% endif %}
 
         <!-- ── CTA ────────────────────────────────────────────────────── -->
-        <div class="cta-box reveal" style="margin-top: 3rem;">
-            <h2>Never Miss a Deadline Again. <span class="text-gradient">Let FilingDeck Handle It.</span></h2>
-            <p>Our team will track every deadline, file every return, and send you reminders — starting at just ₹999/month.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="{{ url_for('services') }}" class="btn btn-primary btn-lg">View Plans</a>
-                <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-whatsapp btn-lg">💬 Talk to Us</a>
+        <div class="mt-16 bg-brand-dark p-12 rounded-3xl text-center shadow-xl">
+            <h2 class="text-3xl font-bold text-white mb-4">Never Miss a Deadline Again. <span class="text-blue-400">Let FilingDeck Handle It.</span></h2>
+            <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">Our team will track every deadline, file every return, and send you reminders — starting at just ₹999/month.</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="{{ url_for('services') }}" class="bg-white dark:bg-gray-900 transition-colors duration-200 text-gray-900 dark:text-gray-100 font-bold py-3 px-8 rounded-xl hover:bg-gray-100 dark:bg-gray-700 transition-colors">View Plans</a>
+                <a href="{{ whatsapp_link }}" target="_blank" class="bg-green-500 text-white font-bold py-3 px-8 rounded-xl hover:bg-green-600 transition-colors flex items-center gap-2">
+                    💬 Talk to Us
+                </a>
             </div>
         </div>
     </div>
@@ -91,6 +95,6 @@ window.DEADLINE_DATA = [
     {% endfor %}
 ];
 </script>
-<script src="{{ url_for('static', filename='js/calendar.js', v=3) }}"></script>
+<script src="{{ url_for('static', filename='js/calendar.js', v=4) }}"></script>
 
 {% endblock %}

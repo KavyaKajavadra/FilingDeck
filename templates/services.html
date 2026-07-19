@@ -3,37 +3,50 @@
 {% block content %}
 
 <!-- ── Page Header ────────────────────────────────────────────────────── -->
-<section class="page-header">
-    <div class="container">
-        <span class="section-label">Services & Pricing</span>
-        <h1>Everything Your Business Needs to <span class="text-gradient">Stay Compliant</span></h1>
-        <p>From GST filing to company incorporation — transparent pricing, no hidden fees, professional service.</p>
+<section class="bg-white dark:bg-gray-900 transition-colors duration-200 py-20 border-b border-gray-100 dark:border-gray-700 dark:border-gray-800 text-center px-6">
+    <div class="max-w-4xl mx-auto">
+        <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-blue-100">Services & Pricing</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-heading dark:text-white mb-6">
+            Everything Your Business Needs to <span class="text-blue-600 dark:text-blue-400">Stay Compliant</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-body dark:text-gray-300 max-w-2xl mx-auto">
+            From GST filing to company incorporation — transparent pricing, no hidden fees, professional service.
+        </p>
     </div>
 </section>
 
 <!-- ── Monthly Plans ──────────────────────────────────────────────────── -->
-<section>
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">Monthly Plans</span>
-            <h2 class="section-title">Choose Your <span class="text-gradient">Compliance Plan</span></h2>
-            <p class="section-subtitle">All plans include WhatsApp support and deadline reminders. Upgrade or switch anytime.</p>
+<section class="py-24 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100">Monthly Plans</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-4">Choose Your <span class="text-blue-600 dark:text-blue-400">Compliance Plan</span></h2>
+            <p class="text-lg text-text-body dark:text-gray-300">All plans include WhatsApp support and deadline reminders. Upgrade or switch anytime.</p>
         </div>
 
-        <div class="pricing-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for plan in plans %}
-            <div class="pricing-card reveal {% if plan.highlight %}highlighted{% endif %}">
-                <h3>{{ plan.name }}</h3>
-                <p class="description">{{ plan.description }}</p>
-                <div class="price">
-                    <span class="currency">₹</span>{{ plan.price }}<span class="period">{{ plan.period }}</span>
+            <div class="bg-white dark:bg-gray-900 transition-colors duration-200 rounded-3xl p-8 border {{ 'border-blue-500 shadow-xl relative scale-105 z-10' if plan.highlight else 'border-gray-200 dark:border-gray-600 shadow-sm' }} flex flex-col">
+                {% if plan.highlight %}
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-bold tracking-wide shadow-md">
+                    MOST POPULAR
                 </div>
-                <ul class="pricing-features">
+                {% endif %}
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ plan.name }}</h3>
+                <p class="text-gray-500 dark:text-gray-400 mb-6 text-sm h-10">{{ plan.description }}</p>
+                <div class="mb-8">
+                    <span class="text-4xl font-extrabold text-gray-900 dark:text-gray-100">₹{{ plan.price }}</span>
+                    <span class="text-gray-500 dark:text-gray-400 font-medium">{{ plan.period }}</span>
+                </div>
+                <ul class="space-y-4 mb-8 flex-1">
                     {% for feature in plan.features %}
-                    <li>{{ feature }}</li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-600 dark:text-gray-400 text-sm">{{ feature }}</span>
+                    </li>
                     {% endfor %}
                 </ul>
-                <a href="{{ whatsapp_link }}" target="_blank" class="btn {% if plan.highlight %}btn-primary{% else %}btn-secondary{% endif %}">
+                <a href="{{ whatsapp_link }}" target="_blank" class="w-full block text-center font-bold py-4 rounded-xl transition-all {{ 'bg-blue-600 text-white hover:bg-blue-700 shadow-md' if plan.highlight else 'bg-blue-50 text-blue-700 hover:bg-blue-100' }}">
                     {{ plan.cta }}
                 </a>
             </div>
@@ -43,23 +56,24 @@
 </section>
 
 <!-- ── Explore All Services ─────────────────────────────────────────────── -->
-<section class="service-deepdive-section" id="explore-services">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">Explore All Services</span>
-            <h2 class="section-title">Everything Your Business <span class="text-gradient">Needs</span></h2>
-            <p class="section-subtitle">Click on any service to view pricing, required documents, process steps, and benefits.</p>
+<section class="py-24 bg-white dark:bg-gray-900 transition-colors duration-200 border-y border-gray-100 dark:border-gray-700 dark:border-gray-800 px-6" id="explore-services">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100">Explore All Services</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-4">Everything Your Business <span class="text-blue-600 dark:text-blue-400">Needs</span></h2>
+            <p class="text-lg text-text-body dark:text-gray-300">Click on any service to view pricing, required documents, process steps, and benefits.</p>
         </div>
 
-        <div class="services-grid stagger-children">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {% for svc in service_details %}
-            <a href="{{ url_for('service_detail', service_id=svc.id) }}" class="glass-card service-item reveal" style="text-decoration: none; display: flex; flex-direction: column; text-align: center; height: 100%; border: 1px solid var(--border-color); transition: all 0.3s ease;">
-                <span class="service-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">{{ svc.icon }}</span>
-                <h3 style="color: var(--text-primary); margin-bottom: 0.5rem; font-family: var(--font-heading);">{{ svc.name }}</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5;">{{ svc.tagline }}</p>
-                <div style="margin-top: auto;">
-                    <span class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; width: 100%;">View Full Details →</span>
-                </div>
+            <a href="{{ url_for('service_detail', service_id=svc.id) }}" class="group bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800 hover:border-blue-300 hover:shadow-lg transition-all flex flex-col items-center text-center">
+                <span class="text-4xl mb-4 group-hover:scale-110 transition-transform">{{ svc.icon }}</span>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 dark:text-blue-400 transition-colors">{{ svc.name }}</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 flex-1">{{ svc.tagline }}</p>
+                <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm flex items-center group-hover:translate-x-1 transition-transform">
+                    View Full Details
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </span>
             </a>
             {% endfor %}
         </div>
@@ -67,76 +81,76 @@
 </section>
 
 <!-- ── Comparison: FilingDeck vs Traditional ─────────────────────────────── -->
-<section>
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-label">Why FilingDeck</span>
-            <h2 class="section-title">FilingDeck vs <span class="text-gradient">Traditional CA Firms</span></h2>
+<section class="py-24 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100">Why FilingDeck</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white">FilingDeck vs <span class="text-blue-600 dark:text-blue-400">Traditional CA Firms</span></h2>
         </div>
 
-        <div class="reveal" style="overflow-x: auto;">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>FilingDeck</th>
-                        <th>Traditional CA Firms</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Monthly GST Filing</td>
-                        <td style="color: var(--accent-emerald);">₹999/month ✓</td>
-                        <td>₹2,000-5,000/month</td>
-                    </tr>
-                    <tr>
-                        <td>Deadline Reminders</td>
-                        <td style="color: var(--accent-emerald);">Automated WhatsApp alerts ✓</td>
-                        <td>Manual / None</td>
-                    </tr>
-                    <tr>
-                        <td>Communication</td>
-                        <td style="color: var(--accent-emerald);">WhatsApp + Phone ✓</td>
-                        <td>Office visits / Email</td>
-                    </tr>
-                    <tr>
-                        <td>Transparency</td>
-                        <td style="color: var(--accent-emerald);">Fixed pricing, no surprises ✓</td>
-                        <td>Variable billing</td>
-                    </tr>
-                    <tr>
-                        <td>Response Time</td>
-                        <td style="color: var(--accent-emerald);">Within hours ✓</td>
-                        <td>Days to weeks</td>
-                    </tr>
-                    <tr>
-                        <td>Compliance Calendar</td>
-                        <td style="color: var(--accent-emerald);">Free tool included ✓</td>
-                        <td>Not offered</td>
-                    </tr>
-                    <tr>
-                        <td>Tech-Enabled</td>
-                        <td style="color: var(--accent-emerald);">Digital dashboard + tracking ✓</td>
-                        <td>Paper-based</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="bg-white dark:bg-gray-900 transition-colors duration-200 rounded-3xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 border-b border-gray-200 dark:border-gray-600 dark:border-gray-700">
+                            <th class="py-5 px-6 font-semibold text-gray-900 dark:text-gray-100 w-1/3">Feature</th>
+                            <th class="py-5 px-6 font-semibold text-blue-600 dark:text-blue-400 w-1/3 bg-blue-50/50 dark:bg-blue-900/50">FilingDeck</th>
+                            <th class="py-5 px-6 font-semibold text-gray-500 dark:text-gray-400 w-1/3">Traditional CA Firms</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Monthly GST Filing</td>
+                            <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">₹999/month ✓</td>
+                            <td class="py-4 px-6 text-gray-500 dark:text-gray-400">₹2,000-5,000/month</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Deadline Reminders</td>
+                            <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Automated WhatsApp alerts ✓</td>
+                            <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Manual / None</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Communication</td>
+                            <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">WhatsApp + Phone ✓</td>
+                            <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Office visits / Email</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Transparency</td>
+                            <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Fixed pricing, no surprises ✓</td>
+                            <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Variable billing</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Response Time</td>
+                            <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Within hours ✓</td>
+                            <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Days to weeks</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Compliance Calendar</td>
+                            <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Free tool included ✓</td>
+                            <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Not offered</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Tech-Enabled</td>
+                            <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Digital dashboard + tracking ✓</td>
+                            <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Paper-based</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- ── CTA ─────────────────────────────────────────────────────────────── -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-box reveal">
-            <h2>Not Sure Which Plan is Right? <span class="text-gradient">Let's Talk.</span></h2>
-            <p>Send us a WhatsApp message with your business details. We'll recommend the perfect plan for you — no commitment.</p>
-            <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-whatsapp btn-lg">💬 Get Free Consultation</a>
-        </div>
+<section class="bg-brand-dark py-24 text-center px-6">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Not Sure Which Plan is Right? <span class="text-blue-400">Let's Talk.</span></h2>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Send us a WhatsApp message with your business details. We'll recommend the perfect plan for you — no commitment.</p>
+        <a href="{{ whatsapp_link }}" target="_blank" class="inline-flex bg-green-500 text-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-green-600 transition-all items-center justify-center gap-2">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Get Free Consultation
+        </a>
     </div>
 </section>
 
-{% endblock %}
-
-{% block scripts %}
 {% endblock %}
