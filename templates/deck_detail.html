@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>FilingDeck - Deck Detail</title>
+    <!-- Tailwind CSS v3 CDN with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'custom-off-white': '#fcfcfc',
+              'brand-dark': '#374151',
+              'text-heading': '#1f2937',
+              'text-body': '#4b5563',
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Google Fonts: Inter for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+    <style data-purpose="layout-adjustments">
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .main-scroll-area { height: calc(100vh - 80px); overflow-y: auto; }
+    </style>
+    <script>
+        // Check local storage for theme
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="flex h-screen overflow-hidden bg-custom-off-white dark:bg-gray-900 text-text-body dark:text-gray-300 transition-colors duration-200">
+    <!-- BEGIN: LeftSidebar -->
+    <aside class="w-64 bg-white dark:bg-gray-900 transition-colors duration-200 border-r border-gray-200 dark:border-gray-600 dark:border-gray-700 flex flex-col shrink-0">
+        <a href="{{ url_for('index') }}" class="p-6 flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="FilingDeck Logo" class="w-8 h-8 object-contain dark:invert">
+            <span class="text-xl font-bold tracking-tight">FilingDeck</span>
+        </a>
+        <nav class="mt-4 flex-1 px-4 space-y-1">
+            <a class="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 px-3 py-2.5 rounded-xl font-medium transition-colors" href="{{ url_for('dashboard') }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center space-x-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-2.5 rounded-xl font-medium" href="#">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <span>My Decks</span>
+            </a>
+            <div class="pt-6 mt-6 border-t border-gray-100 dark:border-gray-700 dark:border-gray-800">
+                <a class="flex items-center space-x-3 text-blue-600 dark:text-blue-400 hover:text-blue-700 px-3 py-2.5 rounded-xl font-medium transition-colors" href="{{ url_for('index') }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    <span>Back to Website</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="p-6 border-t border-gray-100 dark:border-gray-700 dark:border-gray-800">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold">
+                    {{ user.name[0] if user and user.name else 'G' }}
+                </div>
+                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">{{ user.name if user else 'Guest' }}</span>
+            </div>
+        </div>
+    </aside>
+    <!-- END: LeftSidebar -->
+    
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-20 flex items-center justify-between px-8 bg-white dark:bg-gray-900 transition-colors duration-200 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <div>
+                <button class="bg-[#3b82f6] hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-sm shadow-blue-200">
+                    Upload File
+                </button>
+            </div>
+        </header>
+        
+        <div class="flex-1 main-scroll-area px-8 pb-10">
+            <div class="mb-8 flex items-center space-x-4">
+                <a href="{{ url_for('dashboard') }}" class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7"></path></svg>
+                </a>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 capitalize">{{ deck.name }}</h1>
+            </div>
+            
+            <!-- File List -->
+            <div class="bg-white dark:bg-gray-900 transition-colors duration-200 rounded-2xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 dark:bg-gray-800">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">File Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Date Modified</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Size</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-900 transition-colors duration-200 divide-y divide-gray-200">
+                        {% if files %}
+                            {% for file in files %}
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 text-gray-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path></svg>
+                                        <span class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ file.name }}</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ file.date }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ file.size }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="#" class="text-blue-600 dark:text-blue-400 hover:text-blue-900">Download</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="px-6 py-12 text-center">
+                                    <svg class="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+                                    <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">No files in this deck</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Upload files to get started.</p>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

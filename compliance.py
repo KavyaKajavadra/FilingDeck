@@ -14,8 +14,6 @@ BUSINESS_TYPES = {
     "proprietorship": "Proprietorship / Individual",
     "partnership": "Partnership Firm",
     "llp": "Limited Liability Partnership (LLP)",
-    "pvt_ltd": "Private Limited Company",
-    "opc": "One Person Company (OPC)",
     "freelancer": "Freelancer / Self-Employed",
 }
 

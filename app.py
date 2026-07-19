@@ -8,9 +8,15 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
+from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 from twilio.twiml.messaging_response import MessagingResponse
+
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import threading
 
 from compliance import (
     BUSINESS_TYPES,
@@ -39,6 +45,55 @@ db = SQLAlchemy(app)
 # Replace with your actual WhatsApp Business number
 WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "919999999999")
 WHATSAPP_MESSAGE = "Hi FilingDeck! I'm interested in your compliance services."
+
+# ── Email Notifications ──────────────────────────────────────────────────────
+def send_email_async(subject, body):
+    """Sends an email asynchronously."""
+    smtp_server = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
+    smtp_port = int(os.environ.get("SMTP_PORT", 587))
+    smtp_user = os.environ.get("SMTP_USER")
+    smtp_pass = os.environ.get("SMTP_PASS")
+    admin_email = os.environ.get("ADMIN_EMAIL")
+
+    if not all([smtp_user, smtp_pass, admin_email]):
+        print("Email credentials not fully configured. Skipping email notification.")
+        return
+
+    msg = MIMEMultipart()
+    msg['From'] = smtp_user
+    msg['To'] = admin_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'html'))
+
+    try:
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(smtp_user, smtp_pass)
+        server.send_message(msg)
+        server.quit()
+        print("Lead notification email sent successfully!")
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+
+def notify_new_lead(lead):
+    """Formats the lead details and sends an email in the background."""
+    subject = f"New Lead: {lead.name} ({lead.source})"
+    body = f"""
+    <h2>New Lead Received from FilingDeck</h2>
+    <p><strong>Name:</strong> {lead.name}</p>
+    <p><strong>Phone:</strong> {lead.phone}</p>
+    <p><strong>Email:</strong> {lead.email}</p>
+    <p><strong>Business Name:</strong> {lead.business_name}</p>
+    <p><strong>Business Type:</strong> {lead.business_type}</p>
+    <p><strong>Service Interested:</strong> {lead.service_interested}</p>
+    <p><strong>Message:</strong></p>
+    <blockquote style="background: #f9f9f9; padding: 10px; border-left: 4px solid #ccc;">
+        {lead.message or 'No message provided.'}
+    </blockquote>
+    <p><strong>Source:</strong> {lead.source}</p>
+    """
+    thread = threading.Thread(target=send_email_async, args=(subject, body))
+    thread.start()
 
 
 # ── Database Models ──────────────────────────────────────────────────────────
@@ -130,13 +185,16 @@ PLANS = [
 ]
 
 ONE_TIME_SERVICES = [
+    {"name": "Accounting & Bookkeeping", "price": "Custom", "icon": "📊"},
+    {"name": "ITR Filing", "price": "1,499", "icon": "📄"},
+    {"name": "GST Filing", "price": "999", "icon": "🧾"},
+    {"name": "TDS Filing", "price": "999", "icon": "💰"},
     {"name": "PAN Application (Individual / Business)", "price": "499", "icon": "🪪"},
     {"name": "TAN Application", "price": "499", "icon": "📋"},
     {"name": "GST Registration", "price": "1,499", "icon": "📦"},
     {"name": "PTEC (Professional Tax — Individuals)", "price": "799", "icon": "💼"},
     {"name": "PTRC (Professional Tax — Employers)", "price": "999", "icon": "🏭"},
     {"name": "Freelancer Financial Checkup", "price": "999", "icon": "🩺"},
-
     {"name": "Udyam Registration (MSME)", "price": "499", "icon": "🏗️"},
 ]
 
@@ -466,7 +524,41 @@ SERVICE_DETAILS = [
         "penalty": "No specific penalty, but ignoring financial health can lead to missed savings, incorrect filings, and unexpected tax liabilities.",
         "color": "#10b981",
     },
-
+    {
+        "id": "accounting",
+        "icon": "📊",
+        "name": "Accounting & Bookkeeping",
+        "tagline": "Accurate, up-to-date financials tailored to your business volume",
+        "meta_title": "Accounting & Bookkeeping Services | FilingDeck",
+        "meta_description": "Professional accounting and bookkeeping services for MSMEs and freelancers. Clean books, accurate P&L, and seamless tax prep.",
+        "what": "Bookkeeping involves the daily recording of all financial transactions of your business, while accounting uses that data to generate financial statements (P&L, Balance Sheet) and provide insights into your business health.",
+        "benefits": [
+            "Clear visibility into your business profitability",
+            "Easier and faster GST and Income Tax filings",
+            "Better cash flow management and tracking of receivables",
+            "Ready financials for bank loans or investor pitching",
+            "Audit-ready books at all times",
+        ],
+        "requirements": [
+            "Bank statements for the period",
+            "Sales and purchase invoices",
+            "Details of expenses (receipts/bills)",
+            "Loan statements (if any)",
+            "Previous year's audited financials (if applicable)",
+        ],
+        "process_steps": [
+            {"title": "Data Collection", "desc": "Share your monthly bank statements and invoices with us securely."},
+            {"title": "Recording & Categorization", "desc": "Our team records transactions and categorizes income and expenses accurately."},
+            {"title": "Reconciliation", "desc": "We reconcile your books with bank statements to ensure zero discrepancies."},
+            {"title": "Reporting", "desc": "Receive monthly or quarterly financial summaries of your business health."},
+        ],
+        "faqs": [
+            {"q": "Do I need bookkeeping if my business is small?", "a": "Yes! Good bookkeeping helps you claim all eligible tax deductions and prevents mixing personal and business expenses."},
+            {"q": "How much does it cost?", "a": "Our pricing is custom because it depends entirely on the volume of transactions you have per month. Reach out for a quick quote."},
+        ],
+        "penalty": "Poor accounting leads to missed tax deductions, incorrect tax filings resulting in notices, and cash flow crises.",
+        "color": "#3b82f6",
+    },
 ]
 
 TEAM_MEMBERS = [
@@ -574,6 +666,45 @@ def index():
         page_description="FilingDeck offers affordable GST filing, ROC compliance, tax advisory, and company incorporation services for MSMEs and freelancers in Mumbai & Thane. Starting at ₹999/month.",
     )
 
+# ── Admin Auth ───────────────────────────────────────────────────────────────
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get("is_admin"):
+            flash("Please log in to access the admin dashboard.", "error")
+            return redirect(url_for("admin_login"))
+        return f(*args, **kwargs)
+    return decorated_function
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    """Simple admin login page."""
+    if request.method == "POST":
+        password = request.form.get("password", "")
+        admin_password = os.environ.get("ADMIN_PASSWORD", "filingdeck2026")
+        
+        if password == admin_password:
+            session["is_admin"] = True
+            flash("Welcome to the Admin Dashboard.", "success")
+            return redirect(url_for("admin_leads"))
+        else:
+            flash("Invalid password.", "error")
+            
+    return render_template("admin_login.html", page_title="Admin Login")
+
+@app.route("/admin/logout")
+def admin_logout():
+    session.pop("is_admin", None)
+    flash("You have been logged out.", "success")
+    return redirect(url_for("index"))
+
+@app.route("/admin/leads")
+@admin_required
+def admin_leads():
+    """Hidden dashboard to view all incoming leads."""
+    leads = Lead.query.order_by(Lead.id.desc()).all()
+    return render_template("leads.html", leads=leads, page_title="Lead Dashboard")
+
 
 @app.route("/services")
 def services():
@@ -648,12 +779,16 @@ def contact():
             phone=request.form.get("phone", "").strip(),
             business_name=request.form.get("business_name", "").strip(),
             business_type=request.form.get("business_type", "").strip(),
-            service_interested=request.form.get("service_interested", "").strip(),
+            service_interested=", ".join(request.form.getlist("service_interested")),
             message=request.form.get("message", "").strip(),
             source="contact_form",
         )
         db.session.add(lead)
         db.session.commit()
+        
+        # Send background email notification
+        notify_new_lead(lead)
+        
         flash("Thank you! We'll reach out to you within 24 hours.", "success")
         return redirect(url_for("contact"))
 
@@ -684,6 +819,9 @@ def compliance_calendar():
         )
         db.session.add(lead)
         db.session.commit()
+        
+        # Send background email notification
+        notify_new_lead(lead)
 
     # Calculate deadlines
     deadlines = calculate_upcoming_deadlines(business_type)

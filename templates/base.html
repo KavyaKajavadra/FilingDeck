@@ -30,10 +30,13 @@
       }
     </script>
     
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter for a modern look -->
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
     
     <style data-purpose="typography">
         body {
@@ -83,7 +86,7 @@
                         <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
                     </svg>
                 </button>
-                <a class="bg-brand-dark dark:bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-semibold shadow-md hover:bg-gray-800 dark:hover:bg-blue-700 transition-all" href="{{ url_for('dashboard') }}">
+                <a class="bg-brand-dark dark:bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-semibold shadow-md  hover:bg-gray-800 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 dark: hover:bg-blue-700 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 transition-all" href="{{ url_for('dashboard') }}">
                     Dashboard
                 </a>
                 
@@ -119,7 +122,7 @@
     {% endwith %}
 
     <!-- ── Main Content ────────────────────────────────────────────────── -->
-    <main class="flex-grow">
+    <main class="flex-grow animate-fade-in">
         {% block content %}{% endblock %}
     </main>
 
@@ -150,13 +153,13 @@
                         <li><a href="{{ url_for('about') }}" class="hover:text-brand-dark">About Us</a></li>
                         <li><a href="{{ url_for('contact') }}" class="hover:text-brand-dark">Contact</a></li>
                         <li><a href="{{ url_for('index') }}#faq" class="hover:text-brand-dark">FAQs</a></li>
+                        <li><a href="{{ url_for('admin_login') }}" class="hover:text-brand-dark">Team Login</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="font-semibold text-text-heading dark:text-white mb-4 text-sm uppercase tracking-wider">Contact</h4>
                     <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="mailto:helo.filingdeck@gmail.com" class="hover:text-brand-dark">helo.filingdeck@gmail.com</a></li>
                         <li><span class="text-text-muted">8850230153 / 8928030930</span></li>
                         <li>Mumbai & Thane</li>
                         <li>Maharashtra, India</li>
@@ -227,7 +230,10 @@
             });
         });
     </script>
-    <script src="{{ url_for('static', filename='js/animations.js', v=3) }}"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

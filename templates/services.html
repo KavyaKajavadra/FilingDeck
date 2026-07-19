@@ -5,7 +5,7 @@
 <!-- ── Page Header ────────────────────────────────────────────────────── -->
 <section class="bg-white dark:bg-gray-900 transition-colors duration-200 py-20 border-b border-gray-100 dark:border-gray-700 dark:border-gray-800 text-center px-6">
     <div class="max-w-4xl mx-auto">
-        <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-blue-100">Services & Pricing</span>
+        <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-blue-100 dark:border-blue-800">Services & Pricing</span>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-heading dark:text-white mb-6">
             Everything Your Business Needs to <span class="text-blue-600 dark:text-blue-400">Stay Compliant</span>
         </h1>
@@ -19,14 +19,14 @@
 <section class="py-24 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100">Monthly Plans</span>
+            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100 dark:border-blue-800">Monthly Plans</span>
             <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-4">Choose Your <span class="text-blue-600 dark:text-blue-400">Compliance Plan</span></h2>
             <p class="text-lg text-text-body dark:text-gray-300">All plans include WhatsApp support and deadline reminders. Upgrade or switch anytime.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             {% for plan in plans %}
-            <div class="bg-white dark:bg-gray-900 transition-colors duration-200 rounded-3xl p-8 border {{ 'border-blue-500 shadow-xl relative scale-105 z-10' if plan.highlight else 'border-gray-200 dark:border-gray-600 shadow-sm' }} flex flex-col">
+            <div class="bg-white dark:bg-gray-900 transition-colors duration-200 rounded-3xl p-8 border {{ 'border-blue-500 shadow-xl relative z-10' if plan.highlight else 'border-gray-200 dark:border-gray-600 shadow-sm' }} flex flex-col h-full">
                 {% if plan.highlight %}
                 <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-bold tracking-wide shadow-md">
                     MOST POPULAR
@@ -46,9 +46,6 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <a href="{{ whatsapp_link }}" target="_blank" class="w-full block text-center font-bold py-4 rounded-xl transition-all {{ 'bg-blue-600 text-white hover:bg-blue-700 shadow-md' if plan.highlight else 'bg-blue-50 text-blue-700 hover:bg-blue-100' }}">
-                    {{ plan.cta }}
-                </a>
             </div>
             {% endfor %}
         </div>
@@ -59,7 +56,7 @@
 <section class="py-24 bg-white dark:bg-gray-900 transition-colors duration-200 border-y border-gray-100 dark:border-gray-700 dark:border-gray-800 px-6" id="explore-services">
     <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100">Explore All Services</span>
+            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100 dark:border-blue-800">Explore All Services</span>
             <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-4">Everything Your Business <span class="text-blue-600 dark:text-blue-400">Needs</span></h2>
             <p class="text-lg text-text-body dark:text-gray-300">Click on any service to view pricing, required documents, process steps, and benefits.</p>
         </div>
@@ -84,7 +81,7 @@
 <section class="py-24 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6">
     <div class="max-w-5xl mx-auto">
         <div class="text-center mb-16">
-            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100">Why FilingDeck</span>
+            <span class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-blue-100 dark:border-blue-800">Why FilingDeck</span>
             <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white">FilingDeck vs <span class="text-blue-600 dark:text-blue-400">Traditional CA Firms</span></h2>
         </div>
 
@@ -99,37 +96,37 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                             <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Monthly GST Filing</td>
                             <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">₹999/month ✓</td>
                             <td class="py-4 px-6 text-gray-500 dark:text-gray-400">₹2,000-5,000/month</td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                             <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Deadline Reminders</td>
                             <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Automated WhatsApp alerts ✓</td>
                             <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Manual / None</td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                             <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Communication</td>
                             <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">WhatsApp + Phone ✓</td>
                             <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Office visits / Email</td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                             <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Transparency</td>
                             <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Fixed pricing, no surprises ✓</td>
                             <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Variable billing</td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                             <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Response Time</td>
                             <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Within hours ✓</td>
                             <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Days to weeks</td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                             <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Compliance Calendar</td>
                             <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Free tool included ✓</td>
                             <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Not offered</td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                             <td class="py-4 px-6 text-gray-900 dark:text-gray-100 font-medium">Tech-Enabled</td>
                             <td class="py-4 px-6 text-green-600 dark:text-green-400 font-semibold bg-blue-50/30 dark:bg-blue-900/30">Digital dashboard + tracking ✓</td>
                             <td class="py-4 px-6 text-gray-500 dark:text-gray-400">Paper-based</td>
@@ -145,10 +142,10 @@
 <section class="bg-brand-dark py-24 text-center px-6">
     <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Not Sure Which Plan is Right? <span class="text-blue-400">Let's Talk.</span></h2>
-        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Send us a WhatsApp message with your business details. We'll recommend the perfect plan for you — no commitment.</p>
-        <a href="{{ whatsapp_link }}" target="_blank" class="inline-flex bg-green-500 text-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-green-600 transition-all items-center justify-center gap-2">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Send us a message with your business details. We'll recommend the perfect plan for you — no commitment.</p>
+        <a href="{{ url_for('contact') }}" class="inline-flex bg-blue-600 text-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all items-center justify-center gap-2">
             Get Free Consultation
+            <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </a>
     </div>
 </section>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>FilingDeck - Dashboard</title>
+    <!-- Tailwind CSS v3 CDN with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'custom-off-white': '#fcfcfc',
+              'brand-dark': '#374151',
+              'text-heading': '#1f2937',
+              'text-body': '#4b5563',
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Google Fonts: Inter for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+    <style data-purpose="layout-adjustments">
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        /* Specific height for main content to scroll if needed */
+        .main-scroll-area {
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+    </style>
+    <script>
+        // Check local storage for theme
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="flex h-screen overflow-hidden bg-custom-off-white dark:bg-gray-900 text-text-body dark:text-gray-300 transition-colors duration-200">
+    <!-- BEGIN: LeftSidebar -->
+    <aside class="w-64 bg-white dark:bg-gray-900 transition-colors duration-200 border-r border-gray-200 dark:border-gray-600 dark:border-gray-700 flex flex-col shrink-0" data-purpose="sidebar-navigation">
+        <!-- Logo Section -->
+        <a href="{{ url_for('index') }}" class="p-6 flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="FilingDeck Logo" class="w-8 h-8 object-contain dark:invert">
+            <span class="text-xl font-bold tracking-tight">FilingDeck</span>
+        </a>
+        
+        <!-- Navigation Items -->
+        <nav class="mt-4 flex-1 px-4 space-y-1">
+            <a class="flex items-center space-x-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-2.5 rounded-xl font-medium" href="#">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 px-3 py-2.5 rounded-xl font-medium transition-colors" href="#">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <span>My Decks</span>
+            </a>
+            <a class="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 px-3 py-2.5 rounded-xl font-medium transition-colors" href="#">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <span>Shared</span>
+            </a>
+            <a class="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 px-3 py-2.5 rounded-xl font-medium transition-colors" href="#">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <span>Activity</span>
+            </a>
+            <a class="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 px-3 py-2.5 rounded-xl font-medium transition-colors" href="#">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <span>Settings</span>
+            </a>
+            
+            <div class="pt-6 mt-6 border-t border-gray-100 dark:border-gray-700 dark:border-gray-800">
+                <a class="flex items-center space-x-3 text-blue-600 dark:text-blue-400 hover:text-blue-700 px-3 py-2.5 rounded-xl font-medium transition-colors" href="{{ url_for('index') }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    <span>Back to Website</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="p-6 border-t border-gray-100 dark:border-gray-700 dark:border-gray-800" data-purpose="user-footer">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold">
+                    {{ user.name[0] if user and user.name else 'G' }}
+                </div>
+                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">{{ user.name if user else 'Guest' }}</span>
+            </div>
+        </div>
+    </aside>
+    <!-- END: LeftSidebar -->
+    
+    <!-- Main Content Container -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- BEGIN: TopBar -->
+        <header class="h-20 flex items-center justify-between px-8 bg-white dark:bg-gray-900 transition-colors duration-200 border-b border-gray-100 dark:border-gray-800 shrink-0" data-purpose="top-navigation-bar">
+            <!-- Action Button -->
+            <div>
+                <button class="bg-[#3b82f6] hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-sm shadow-blue-200">
+                    Create New Deck
+                </button>
+            </div>
+            <!-- Search and Notifications -->
+            <div class="flex items-center space-x-6">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    </span>
+                    <input class="block w-64 pl-10 pr-3 py-2 border border-gray-200 dark:border-gray-600 dark:border-gray-700 rounded-full bg-white dark:bg-gray-900 transition-colors duration-200 text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Search documents, decks..." type="text"/>
+                </div>
+                <button class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                </button>
+            </div>
+        </header>
+        <!-- END: TopBar -->
+        
+        <!-- BEGIN: DashboardContent -->
+        <div class="flex-1 main-scroll-area px-8 pb-10">
+            <!-- Welcome Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Welcome back, {{ user.name if user else 'Guest' }}</h1>
+            </div>
+            <!-- Document Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-purpose="document-grid">
+                
+                {% if decks %}
+                    {% for deck in decks %}
+                    <a href="{{ url_for('deck_detail', deck_id=deck.id) }}" class="block bg-white dark:bg-gray-900 transition-colors duration-200 rounded-2xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
+                        <div class="h-32 bg-gray-50 dark:bg-gray-800 transition-colors duration-200 border-b border-gray-100 dark:border-gray-800 flex items-center justify-center">
+                            <div class="w-16 h-12 bg-white dark:bg-gray-900 transition-colors duration-200 border border-gray-200 dark:border-gray-600 dark:border-gray-700 rounded-md shadow-sm relative">
+                                <div class="absolute -top-1 left-0 w-6 h-2 bg-white dark:bg-gray-900 transition-colors duration-200 border-t border-l border-r border-gray-200 dark:border-gray-600 dark:border-gray-700 rounded-t-sm"></div>
+                                <div class="flex items-center justify-center h-full">
+                                    <svg class="w-6 h-6 text-blue-400 opacity-50" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-3 3 5z"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-gray-900 dark:text-gray-100 truncate">{{ deck.name }}</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ deck.file_count }} Files</p>
+                            <p class="text-[11px] text-gray-400 mt-0.5 uppercase tracking-wide">Last modified: {{ deck.last_modified }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-span-full flex flex-col items-center justify-center py-12 bg-white dark:bg-gray-900 transition-colors duration-200 rounded-2xl border border-gray-200 dark:border-gray-600 dark:border-gray-700 border-dashed">
+                        <svg class="w-12 h-12 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">No decks yet</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Get started by creating a new deck.</p>
+                        <button class="mt-4 bg-[#3b82f6] hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-sm">
+                            Create New Deck
+                        </button>
+                    </div>
+                {% endif %}
+                
+            </div>
+    </main>
+</body>
+</html>

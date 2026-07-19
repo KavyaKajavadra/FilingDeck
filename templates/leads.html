@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-16 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6 min-h-screen">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Admin: Lead Dashboard</h1>
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-blue-900/30 dark:text-blue-300">Total Leads: {{ leads|length }}</span>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 shadow-sm rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700/50 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 font-bold">ID / Date</th>
+                            <th scope="col" class="px-6 py-4 font-bold">Client Info</th>
+                            <th scope="col" class="px-6 py-4 font-bold">Business / Services</th>
+                            <th scope="col" class="px-6 py-4 font-bold">Message</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                        {% for lead in leads %}
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="font-bold text-gray-900 dark:text-white">#{{ lead.id }}</div>
+                                <div class="text-xs text-gray-500 mt-1">{{ lead.source }}</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="font-medium text-gray-900 dark:text-white">{{ lead.name }}</div>
+                                <div class="text-gray-600 dark:text-gray-400 mt-1 flex flex-col gap-0.5">
+                                    <a href="tel:{{ lead.phone }}" class="hover:text-blue-500 flex items-center"><span class="w-4">📞</span> {{ lead.phone }}</a>
+                                    {% if lead.email %}
+                                    <a href="mailto:{{ lead.email }}" class="hover:text-blue-500 flex items-center"><span class="w-4">✉️</span> {{ lead.email }}</a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="font-medium text-gray-900 dark:text-white mb-1">
+                                    {{ lead.business_name or 'N/A' }} 
+                                    {% if lead.business_type %}
+                                    <span class="text-xs text-gray-500 font-normal">({{ lead.business_type|title }})</span>
+                                    {% endif %}
+                                </div>
+                                {% if lead.service_interested %}
+                                <div class="flex flex-wrap gap-1 mt-2">
+                                    {% for svc in lead.service_interested.split(',') %}
+                                        {% if svc.strip() %}
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border border-green-200 dark:border-green-800">
+                                            {{ svc.strip() }}
+                                        </span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td class="px-6 py-4 min-w-[300px]">
+                                {% if lead.message %}
+                                <div class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap text-xs bg-gray-50 dark:bg-gray-900/50 p-3 rounded-lg border border-gray-100 dark:border-gray-800 italic">"{{ lead.message }}"</div>
+                                {% else %}
+                                <span class="text-gray-400 italic">No message attached</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                                <div class="text-4xl mb-3">📭</div>
+                                <p class="text-lg font-medium">No leads have come in yet.</p>
+                                <p class="text-sm mt-1">Once someone fills out the contact form, they will appear here.</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

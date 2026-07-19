@@ -4,9 +4,9 @@
 
 <!-- ── Hero Section ────────────────────────────────────────────────────── -->
 <section class="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24 flex flex-col lg:flex-row items-center justify-between">
-    <!-- Left Column: Content -->
-    <div class="w-full lg:w-1/2 flex flex-col items-start z-10 mb-12 lg:mb-0">
-        <div class="inline-block bg-blue-50 dark:bg-blue-900/30 text-blue-700 font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-blue-100 shadow-sm">
+    <div class="w-full lg:w-1/2 flex flex-col items-start z-10 mb-12 lg:mb-0" data-aos="fade-up">
+        <div class="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-blue-100 dark:border-blue-800 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-green-500"></span>
             Serving MSMEs in Mumbai & Thane
         </div>
         
@@ -20,7 +20,7 @@
         
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a href="{{ url_for('services') }}" class="bg-brand-dark text-white text-center text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-800 transition-all">
+            <a href="{{ url_for('services') }}" class="bg-brand-dark text-white text-center text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl  hover:bg-gray-800 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 transition-all">
                 View Plans & Pricing
             </a>
             <a href="{{ whatsapp_link }}" target="_blank" class="bg-green-500 text-white text-center text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-green-600 transition-all flex items-center justify-center gap-2">
@@ -36,8 +36,8 @@
     </div>
     
     <!-- Right Column: Illustration -->
-    <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
-        <div class="w-full max-w-lg aspect-square bg-white dark:bg-gray-900 transition-colors duration-200 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl flex flex-col overflow-hidden relative">
+    <div class="w-full lg:w-1/2 flex justify-center lg:justify-end" data-aos="fade-left" data-aos-delay="200">
+        <div class="w-full max-w-lg aspect-square bg-white dark:bg-gray-900 transition-colors duration-200 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl flex flex-col overflow-hidden relative animate-float">
             <!-- Mac Window Header -->
             <div class="h-10 bg-gray-50 dark:bg-gray-800 transition-colors duration-200 border-b border-gray-200 dark:border-gray-700 flex items-center px-4 gap-2 shrink-0">
                 <div class="w-3 h-3 rounded-full bg-red-400"></div>
@@ -140,19 +140,32 @@
             <p class="text-lg text-text-body dark:text-gray-300">We handle your most sensitive data. Here is how we keep you safe and informed.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800">
-                <div class="w-12 h-12 bg-blue-100 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 text-2xl">🏦</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+            <!-- Feature 1 -->
+            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:-translate-y-1 hover:shadow-lg dark:hover:border-gray-600 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.315 48.315 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                    </svg>
+                </div>
                 <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Bank-Level Security</h3>
                 <p class="text-gray-600 dark:text-gray-400">Your PAN, Aadhaar, and financial data are secured with 256-bit SSL encryption. We never share your data. 100% Confidentiality guaranteed.</p>
             </div>
-            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800">
-                <div class="w-12 h-12 bg-green-100 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center mb-6 text-2xl">🛡️</div>
+            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:-translate-y-1 hover:shadow-lg dark:hover:border-gray-600 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                    </svg>
+                </div>
                 <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Radical Transparency</h3>
                 <p class="text-gray-600 dark:text-gray-400">No hidden fees. No surprise bills. What you see on our pricing page is exactly what you pay. We believe in earning your trust through honesty.</p>
             </div>
-            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 dark:border-gray-800">
-                <div class="w-12 h-12 bg-purple-100 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-6 text-2xl">💬</div>
+            <div class="bg-gray-50 dark:bg-gray-800 transition-colors duration-200 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:-translate-y-1 hover:shadow-lg dark:hover:border-gray-600 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                    </svg>
+                </div>
                 <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Zero Legal Jargon</h3>
                 <p class="text-gray-600 dark:text-gray-400">Taxes are complicated enough. We explain your compliance status and requirements in plain English. No intimidating jargon.</p>
             </div>
@@ -160,9 +173,9 @@
     </div>
 </section>
 
-<!-- ── Pain Points / How it Works ─────────────────────────────────────── -->
-<section class="bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 py-24">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 text-center">
+<!-- ── Features / How it Works ───────────────────────────────────────────── -->
+<section class="w-full bg-gray-50 dark:bg-gray-800/30 py-16 md:py-24 transition-colors duration-200 border-t border-gray-100 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 text-center" data-aos="fade-up">
         <h2 class="text-3xl md:text-4xl font-bold text-text-heading dark:text-white mb-4">Three Simple Steps to Stress-Free Compliance</h2>
         <p class="text-lg text-text-body dark:text-gray-300 mb-16 max-w-2xl mx-auto">Stop worrying about missed deadlines and confusing portals.</p>
         
@@ -199,23 +212,23 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="name">Your Name</label>
-                    <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Raj Sharma" required>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900/50 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Raj Sharma" required>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="98XXXXXXXX" required>
+                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900/50 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="98XXXXXXXX" required>
                 </div>
             </div>
             <div class="mb-8">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="business_type">Business Type</label>
-                <select id="business_type" name="business_type" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white dark:bg-gray-900 transition-colors duration-200 dark:bg-gray-900" required>
-                    <option value="" disabled selected>Select your business type...</option>
+                <select id="business_type" name="business_type" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900/50 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" required>
+                    <option class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" value="" disabled selected>Select your business type...</option>
                     {% for key, label in business_types.items() %}
-                    <option value="{{ key }}">{{ label }}</option>
+                    <option class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" value="{{ key }}">{{ label }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-xl hover:bg-gray-800 transition-colors shadow-md">
+            <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-xl  hover:bg-gray-800 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 transition-colors shadow-md">
                 Show My Compliance Calendar
             </button>
         </form>

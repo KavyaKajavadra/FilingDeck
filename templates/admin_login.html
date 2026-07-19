@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-24 bg-custom-off-white dark:bg-gray-900 transition-colors duration-200 px-6 min-h-[calc(100vh-200px)] flex items-center justify-center">
+    <div class="max-w-md w-full bg-white dark:bg-gray-800 shadow-xl rounded-3xl overflow-hidden border border-gray-100 dark:border-gray-700 p-8 text-center">
+        <div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6">
+            🔒
+        </div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Admin Login</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">Please enter the admin password to access the leads dashboard.</p>
+        
+        <form action="{{ url_for('admin_login') }}" method="POST" class="space-y-6">
+            <div>
+                <input type="password" name="password" id="password" required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900/50 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-center" 
+                    placeholder="Enter Admin Password">
+            </div>
+            <button type="submit" class="w-full bg-brand-dark text-white text-lg font-bold py-3 rounded-xl shadow-md hover:shadow-lg hover:bg-gray-800 transition-all duration-300">
+                Secure Login
+            </button>
+        </form>
+    </div>
+</section>
+{% endblock %}
