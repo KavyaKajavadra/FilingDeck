@@ -8,7 +8,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session, make_response
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 from twilio.twiml.messaging_response import MessagingResponse
@@ -890,6 +890,56 @@ def whatsapp_webhook():
     msg.body(reply_text)
     
     return str(twiml_response)
+
+
+# ── SEO & Indexing ───────────────────────────────────────────────────────────
+
+@app.route("/robots.txt")
+def robots_txt():
+    """Tells search engines what they can index."""
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        f"Sitemap: {request.url_root.rstrip('/')}/sitemap.xml"
+    ]
+    response = make_response("\n".join(lines))
+    response.headers["Content-Type"] = "text/plain"
+    return response
+
+@app.route("/sitemap.xml")
+def sitemap():
+    """Generates a dynamic XML sitemap for search engines."""
+    base_url = request.url_root.rstrip('/')
+    
+    # Static pages
+    pages = [
+        {"loc": f"{base_url}/", "priority": "1.0"},
+        {"loc": f"{base_url}/about", "priority": "0.8"},
+        {"loc": f"{base_url}/services", "priority": "0.9"},
+        {"loc": f"{base_url}/contact", "priority": "0.8"},
+    ]
+    
+    # Dynamic service pages
+    for service in SERVICE_DETAILS:
+        pages.append({
+            "loc": f"{base_url}/services/{service['id']}",
+            "priority": "0.7"
+        })
+        
+    xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    
+    for page in pages:
+        xml_content += "  <url>\n"
+        xml_content += f"    <loc>{page['loc']}</loc>\n"
+        xml_content += f"    <priority>{page['priority']}</priority>\n"
+        xml_content += "  </url>\n"
+        
+    xml_content += "</urlset>"
+    
+    response = make_response(xml_content)
+    response.headers["Content-Type"] = "application/xml"
+    return response
 
 
 # ── Database Initialization ──────────────────────────────────────────────────
